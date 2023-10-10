@@ -45,5 +45,6 @@ class CaseStudyEvaluation(Base):
     trainee_answer = Column(String, nullable=False)
 
 
-# Create the tables in the database
-Base.metadata.create_all(engine)
+if __name__ == "__main__":
+    # Create the tables in the database
+    Base.metadata.create_all(engine)
