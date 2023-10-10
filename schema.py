@@ -1,5 +1,5 @@
 from sqlalchemy import create_engine, Column, Integer, String, ForeignKey
-from sqlalchemy.orm import relationship, declarative_base
+from sqlalchemy.orm import declarative_base
 
 
 # Create a database engine (SQLite in this case)
@@ -17,9 +17,6 @@ class CaseStudy(Base):
     email_instructions = Column(String, nullable=False)
     context = Column(String, nullable=False)
     name = Column(String, nullable=False)
-
-    # Define a one-to-many relationship with courses
-    courses = relationship("Course", back_populates="student")
 
 
 # Define the Course class
