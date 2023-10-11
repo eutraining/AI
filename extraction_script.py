@@ -53,7 +53,7 @@ def evaluation_info_extract(evaluation_info):
     score_pattern = "Your Score .*"
     overall_score = re.search(score_pattern, evaluation_info).group(0)[-6:].strip()
     # Overall Summary
-    summary_pattern = r"Summary[\s\S]+Per Competency Score?"
+    summary_pattern = r"Summary[\s\S]+?Per Competency Score?"
     summary = re.search(summary_pattern, evaluation_info).group(0).strip()
     # Communication Score
     communication_pattern = r"Communication .*"
@@ -81,3 +81,27 @@ def evaluation_info_extract(evaluation_info):
             communication_summary = evaluation_info[start: errors_search.start()].strip()
             errors_info = evaluation_info[errors_search.start():].strip()
     return overall_score, summary, communication_score, communication_summary, errors_info, tips_to_improve
+
+
+def case_study_extract(evaluation_info):
+    # Instructions
+    important_notice = r"(?i)Important Notice[\s\S]+?Please Note"
+    instructions_search = re.search(important_notice, evaluation_info)
+    instructions = ""
+    if instructions_search is not None:
+        instructions = instructions_search.group(0)[17:-11].strip()
+    # Abbreviations
+    abb_pattern = r"(?i)Abbreviations[\s\S]+?From:"
+    abb_search = re.search(abb_pattern, evaluation_info)
+    abbreviations = ""
+    if abb_search is not None:
+        abbreviations = abb_search.group(0)[:-5].strip()
+    # Email and Content
+    email_pattern = r"Subject:[\s\S]+?(?:(?i)Thanks?|Head of Unit)"
+    email_search = re.search(email_pattern, evaluation_info)
+    email = ""
+    content = evaluation_info
+    if email_search is not None:
+        email = email_search.group(0).strip()
+        content = evaluation_info[email_search.end():].strip()
+    return instructions, abbreviations, email, content
