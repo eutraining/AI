@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Column, Integer, String, ForeignKey
+from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, Float
 from sqlalchemy.orm import declarative_base
 
 
@@ -33,9 +33,9 @@ class CaseStudyEvaluation(Base):
 
     case_study_evaluation_id = Column(Integer, primary_key=True, autoincrement=True)
     case_study_id = Column(Integer, ForeignKey('case_study.case_study_id'), nullable=False)
-    overall_score = Column(Integer, nullable=False)
+    overall_score = Column(Float, nullable=False)
     overall_summary = Column(String, nullable=False)
-    communication_score = Column(Integer, nullable=False)
+    communication_score = Column(Float, nullable=False)
     communication_summary = Column(String)
     communication_errors = Column(String)
     communication_tips = Column(String)
