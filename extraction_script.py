@@ -4,17 +4,22 @@ from docx.oxml.text.paragraph import CT_P
 import re
 
 
-def read_docx(docx_path):
+# Function to fetch the document data
+def read_docx(docx_path: str) -> str:
+    # Load the Document
     doc = docx.Document(docx_path)
     document_text = ""
+    # Get all the paragraphs and tables elements
     document_paragraph = doc.paragraphs
     document_table = doc.tables
     body_location = []
+    # Get the order of the elements
     for element in doc.element.body:
         if isinstance(element, CT_Tbl):
             body_location.append("T")
         elif isinstance(element, CT_P):
             body_location.append("P")
+    # Fetch the document data in the correct order of elements
     para, tab = 0, 0
     for loc in body_location:
         if loc == "P":
@@ -33,7 +38,8 @@ def read_docx(docx_path):
     return document_text
 
 
-def trainee_answer_extractor(trainee_answer):
+# Fetch the trainee's answer content
+def trainee_answer_extractor(trainee_answer: str) -> tuple:
     question_start = trainee_answer.find("Question")
     trainee_answer_start = trainee_answer.find("Trainee's Answer")
     case_study_name = trainee_answer[question_start:trainee_answer_start].strip()
@@ -41,9 +47,12 @@ def trainee_answer_extractor(trainee_answer):
     return case_study_name, answer_content
 
 
-def review_guide_extract(review_info):
+# Fetch the review guide data
+def review_guide_extract(review_info: str) -> tuple:
+    # Score Grid Pattern
     pattern = r"Communication[\s\S]+?Key tips to improve / maintain performance:"
     communication_section = re.search(pattern, review_info)
+    # Sample Solution Pattern
     recommendations_solution_pattern = r"Example [S/s]olution"
     recommendations_solution_search = re.search(recommendations_solution_pattern, review_info).end()
     recommendations_solution = review_info[recommendations_solution_search:]
@@ -53,7 +62,8 @@ def review_guide_extract(review_info):
     return score_grid, recommendations_solution
 
 
-def evaluation_info_extract(evaluation_info):
+# Fetch the Evaluation file data
+def evaluation_info_extract(evaluation_info: str) -> tuple:
     # Overall Score
     score_pattern = "Your [S/s]core .*"
     overall_score = re.search(score_pattern, evaluation_info).group(0).strip()
@@ -92,7 +102,8 @@ def evaluation_info_extract(evaluation_info):
     return overall_score, summary, communication_score, communication_summary, errors_info, tips_to_improve
 
 
-def case_study_extract(evaluation_info):
+# Fetch Case Study Data
+def case_study_extract(evaluation_info: str) -> tuple:
     # Instructions
     important_notice = r"(?i)Important Notice[\s\S]+?Please Note"
     instructions_search = re.search(important_notice, evaluation_info)
@@ -115,5 +126,3 @@ def case_study_extract(evaluation_info):
         content = evaluation_info[email_search.end():].strip()
     return instructions, abbreviations, email, content
 
-
-# print(evaluation_info_extract(read_docx(r"E:\Freelancing\AXEOM\Axeom_EUTraining\CS docs for AI\Generic Case Studies\Case 1\Copy of 2_2_Evaluation_DT.docx")))
