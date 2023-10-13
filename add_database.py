@@ -24,8 +24,7 @@ def add_case_study(instructions: str, abbreviations: str, email: str, content: s
 
 
 # Function for creating Case Study Evaluation Record
-def add_evluation_info(case_study_id: int, overall_score: float, summary: str, communication_score: float,
-            communication_summary: str, errors_info: str, tips_to_improve: str, trainee_answer: str) -> None:
+def add_evaluation_info(case_study_id: int, overall_score: float, summary: str, communication_score: float, communication_summary: str, errors_info: str, tips_to_improve: str, trainee_answer: str) -> None:
     try:
         case_study_evaluation = CaseStudyEvaluation(
             case_study_id=case_study_id,
@@ -98,14 +97,14 @@ def add_extracted_info_database(base_path: str) -> None:
             overall_score, summary, communication_score, communication_summary, \
                 errors_info, tips_to_improve = evaluation_info_extract(evaluation_info)
             ''''''
-            add_evluation_info(case_study_id, overall_score, summary, communication_score, communication_summary, \
-                               errors_info, tips_to_improve, answer_content)
+            add_evaluation_info(case_study_id, overall_score, summary, communication_score, communication_summary,
+                                errors_info, tips_to_improve, answer_content)
             ''''''
 
 
 if __name__ == "__main__":
     # Base Path for Case Studies Directory
-    base_path = "E:/Freelancing/AXEOM/Axeom_EUTraining/CS docs for AI/Generic Case Studies"
+    base_folder_path = "E:/Freelancing/AXEOM/Axeom_EUTraining/CS docs for AI/Generic Case Studies"
     # Create Database Engine
     engine = create_engine('sqlite:///eutraining.db', echo=True)
     # If database not present in file system, then make a new one
@@ -115,6 +114,6 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
     # Function to execute the extraction and creation of records into DB
-    add_extracted_info_database(base_path)
+    add_extracted_info_database(base_folder_path)
     # Close the session after inserting data
     session.close()
