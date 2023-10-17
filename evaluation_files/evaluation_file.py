@@ -1,10 +1,10 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from data_analysis.schema import CaseStudy
-from fetch_db_data import fetch_case_study, fetch_case_study_evaluation
-from openai_api import call_gpt_api
-from config import settings
-from make_evaluation_data import *
+from database.schema import CaseStudy
+from database.db_data import fetch_case_study, fetch_case_study_evaluation
+from chatgpt_api.openai_api import call_gpt_api
+from chatgpt_api.config import settings
+from evaluation_files.evaluation_data import *
 
 engine = create_engine('sqlite:///eutraining.db')
 Session = sessionmaker(bind=engine)

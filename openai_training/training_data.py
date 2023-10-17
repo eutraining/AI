@@ -1,5 +1,5 @@
 import json
-from config import settings
+from chatgpt_api.config import settings
 
 
 def create_evaluation_sample(name: str, instructions: str, abbreviations: str,
@@ -16,6 +16,16 @@ def create_evaluation_sample(name: str, instructions: str, abbreviations: str,
 def create_overall_content(overall_summary: str, overall_score: float) -> str:
     data = f"Overall Score (out-off 10): {overall_score}\n\n" \
            f"Overall Summary: \n{overall_summary}\n"
+    return data
+
+
+def create_score_content(metric: str, score: float) -> str:
+    data = f"{metric} Score (out-off 10): {score}\n\n"
+    return data
+
+
+def create_summary_content(metric: str, summary: str) -> str:
+    data = f"{metric} Summary: \n{summary}\n"
     return data
 
 
@@ -49,6 +59,13 @@ def create_communication_score(user_content: str, communication_content: str) ->
     return {"messages": [{"role": "system", "content": settings.COMMUNICATION_SCORE_SUMMARY_MESSAGE},
                          {"role": "user", "content": user_content},
                          {"role": "assistant", "content": communication_content}
+                         ]}
+
+
+def create_dict_data(system_message: str, user_content: str, content: str) -> dict:
+    return {"messages": [{"role": "system", "content": system_message},
+                         {"role": "user", "content": user_content},
+                         {"role": "assistant", "content": content}
                          ]}
 
 

@@ -1,8 +1,8 @@
 import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from schema import Base, CaseStudy, ReviewGuide, CaseStudyEvaluation
-from extraction_script import *
+from database.schema import Base, CaseStudy, ReviewGuide, CaseStudyEvaluation
+from extraction import *
 
 
 # Function for creating Case Study Record

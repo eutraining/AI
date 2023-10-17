@@ -1,6 +1,5 @@
 import openai
-
-from config import settings
+from chatgpt_api.config import settings
 
 
 def call_gpt35_turbo(system_message: str, prompt: str) -> str:
@@ -14,7 +13,7 @@ def call_gpt35_turbo(system_message: str, prompt: str) -> str:
                 # model="gpt-3.5-turbo",
                 model="gpt-3.5-turbo-16k",
                 temperature=0.0,
-                timeout=90,
+                timeout=settings.TIMEOUT,
                 messages=[
                     {"role": "system", "content": system_message},
                     {"role": "user", "content": prompt},
@@ -39,8 +38,8 @@ def call_gpt3_davinci(system_message: str, prompt: str) -> str:
                 model="text-davinci-003",
                 prompt=prompt,
                 temperature=0.0,
+                timeout=settings.TIMEOUT,
                 max_tokens=1000,
-                timeout=90,
                 top_p=1,
                 frequency_penalty=0,
                 presence_penalty=0,
@@ -62,7 +61,7 @@ def call_gpt4(system_message: str, prompt: str) -> str:
             response = openai.ChatCompletion.create(
                 model="gpt-4",
                 temperature=0.0,
-                timeout=90,
+                timeout=settings.TIMEOUT,
                 messages=[
                     {"role": "system", "content": system_message},
                     {"role": "user", "content": prompt},

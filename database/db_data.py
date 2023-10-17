@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from data_analysis.schema import CaseStudy, CaseStudyEvaluation
+from database.schema import CaseStudy, CaseStudyEvaluation
 
 
 def fetch_case_study(cs_id: int, session: Session) -> tuple:
