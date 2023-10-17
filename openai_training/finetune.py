@@ -1,7 +1,6 @@
 import os
 import openai
 import json
-import csv
 from chatgpt_api.config import settings
 
 openai.api_key = settings.OPENAI_API_KEY
