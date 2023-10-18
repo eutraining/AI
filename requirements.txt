@@ -60,6 +60,7 @@ python-multipart==0.0.6
 pytz==2023.3.post1
 PyYAML==6.0.1
 referencing==0.30.2
+regex==2023.10.3
 requests==2.31.0
 rpds-py==0.10.6
 semantic-version==2.10.0
@@ -73,6 +74,7 @@ SQLAlchemy==2.0.21
 srsly==2.4.8
 starlette==0.27.0
 thinc==8.2.1
+tiktoken==0.5.1
 toolz==0.12.0
 tqdm==4.66.1
 typer==0.9.0

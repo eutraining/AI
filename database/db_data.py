@@ -2,6 +2,12 @@ from sqlalchemy.orm import Session
 from database.schema import CaseStudy, CaseStudyEvaluation
 
 
+def fetch_prompt_message(filepath: str) -> str:
+    with open(filepath, "r") as f:
+        data = f.read()
+    return data
+
+
 def fetch_case_study(cs_id: int, session: Session) -> tuple:
     record = session.get(CaseStudy, cs_id)
     if record is not None:
