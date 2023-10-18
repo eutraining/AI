@@ -2,7 +2,7 @@ import openai
 from chatgpt_api.config import settings
 
 
-def call_gpt35_turbo(system_message: str, prompt: str) -> str:
+def call_gpt35_turbo(system_message: str, prompt: str, model="gpt-3.5-turbo-16k") -> str:
     """Calls OpenAI GPT3.5 turbo API with the specified system message and prompt"""
     result = ""
     tries = 0
@@ -11,7 +11,7 @@ def call_gpt35_turbo(system_message: str, prompt: str) -> str:
             openai.api_key = settings.OPENAI_API_KEY
             response = openai.ChatCompletion.create(
                 # model="gpt-3.5-turbo",
-                model="gpt-3.5-turbo-16k",
+                model=model,
                 temperature=0.0,
                 timeout=settings.TIMEOUT,
                 messages=[
@@ -74,11 +74,11 @@ def call_gpt4(system_message: str, prompt: str) -> str:
     return result
 
 
-def call_gpt_api(system_message: str, prompt: str) -> str:
+def call_gpt_api(system_message: str, prompt: str, model="gpt-3.5-turbo-16k") -> str:
     """Selects and calls the correct GPT model to use from settings"""
     if settings.GPT_MODEL == "gpt3.5":
         # GPT3.5
-        return call_gpt35_turbo(system_message, prompt)
+        return call_gpt35_turbo(system_message, prompt, model)
     elif settings.GPT_MODEL == "davinci":
         # GPT3 Davinci
         return call_gpt3_davinci(system_message, prompt)
