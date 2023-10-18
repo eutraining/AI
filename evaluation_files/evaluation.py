@@ -7,6 +7,12 @@ from openai_training.training_file import generate_summary
 from openai_training.training_data import create_score_content, create_summary_content
 
 
+def add_summary(sample_evaluation: str, summary: str, metric: str) -> str:
+    metric_data = f"\n\n{metric} Summary: \n{summary}\n"
+    data = sample_evaluation + metric_data
+    return data
+
+
 def generate_evaluation_clubbed(case_studies_id: list, session: Session, summary_var: bool) -> None:
     # JSONL Files list
     overall_score_summary_file = [["ID", "Actual", "Predicted"]]
@@ -88,10 +94,12 @@ def generate_evaluation_singleton(case_studies_id: list, session: Session, summa
 
             # GPT Data Fetching
             summary_content = call_gpt_api(settings.OVERALL_SUMMARY_MESSAGE, sample_evaluation_data)
-            score_content = call_gpt_api(settings.OVERALL_SCORE_MESSAGE, sample_evaluation_data,
+            score_evaluation = add_summary(sample_evaluation_data, summary_content, "Overall")
+            score_content = call_gpt_api(settings.OVERALL_SCORE_MESSAGE, score_evaluation,
                                          "ft:gpt-3.5-turbo-0613:personal::8AdMdd1c")
             communication_summary_content = call_gpt_api(settings.COMMUNICATION_SUMMARY_MESSAGE, sample_evaluation_data)
-            communication_score_content = call_gpt_api(settings.COMMUNICATION_SCORE_MESSAGE, sample_evaluation_data,
+            communication_score_evaluation = add_summary(sample_evaluation_data, communication_summary_content, "Communication")
+            communication_score_content = call_gpt_api(settings.COMMUNICATION_SCORE_MESSAGE, communication_score_evaluation,
                                                        "ft:gpt-3.5-turbo-0613:personal::8Ad342wv")
             tips_errors = call_gpt_api(settings.TIPS_ERRORS_MESSAGE, sample_evaluation_data)
 
