@@ -31,6 +31,6 @@ def create_tips_errors(tips: str, errors: str) -> str:
 
 
 def create_csv_file(data: list, filename: str) -> None:
-    with open(filename, 'w', newline='') as file:
+    with open(filename, 'w', newline='', encoding='utf-8') as file:
         writer = csv.writer(file)
         writer.writerows(data)

@@ -2,7 +2,7 @@ import argparse
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from openai_training.training_file import *
-from database.schema import CaseStudy
+from database.schema import CaseStudy, CaseStudyEvaluation
 from openai_training.finetune import generate_finetune
 
 if __name__ == "__main__":
@@ -14,11 +14,16 @@ if __name__ == "__main__":
     # Parse the command-line arguments
     args = parser.parse_args()
 
-    engine = create_engine('sqlite:///eutraining.db')
+    engine = create_engine('sqlite:///eutraining_v2.db')
     Session = sessionmaker(bind=engine)
     session = Session()
+
     case_studies_id = session.query(CaseStudy.case_study_id).all()
     case_studies_id = [value[0] for value in case_studies_id]
+
+    evaluation_studies_id = session.query(CaseStudyEvaluation.case_study_evaluation_id).all()
+    evaluation_studies_id = [value[0] for value in evaluation_studies_id]
+
     if args.input_path == "YES":
         summary_var = True
     else:
@@ -32,5 +37,7 @@ if __name__ == "__main__":
         generate_finetune("clubbed", summary_var)
     elif args.command == "singleton_finetune":
         generate_finetune("singleton", summary_var)
+    elif args.command == "train_test":
+        train_validation_split(evaluation_studies_id, session)
 
     session.close()

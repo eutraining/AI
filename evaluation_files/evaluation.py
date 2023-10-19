@@ -69,11 +69,11 @@ def generate_evaluation_clubbed(case_studies_id: list, session: Session, summary
 
 def generate_evaluation_singleton(case_studies_id: list, session: Session, summary_var: bool) -> None:
     # JSONL Files list
-    overall_score_file = [["ID", "Actual", "Predicted", "Token Count"]]
-    overall_summary_file = [["ID", "Actual", "Predicted", "Token Count"]]
-    communication_score_file = [["ID", "Actual", "Predicted", "Token Count"]]
-    communication_summary_file = [["ID", "Actual", "Predicted", "Token Count"]]
-    tips_errors_file = [["ID", "Actual", "Predicted", "Token Count"]]
+    overall_score_file = [["ID", "Actual", "Predicted", "Input Token Count", "Output Token Count"]]
+    overall_summary_file = [["ID", "Actual", "Predicted", "Input Token Count", "Output Token Count"]]
+    communication_score_file = [["ID", "Actual", "Predicted", "Input Token Count", "Output Token Count"]]
+    communication_summary_file = [["ID", "Actual", "Predicted", "Input Token Count", "Output Token Count"]]
+    tips_errors_file = [["ID", "Actual", "Predicted", "Input Token Count", "Output Token Count"]]
 
     dir_name = "non_summary"
 
@@ -110,21 +110,32 @@ def generate_evaluation_singleton(case_studies_id: list, session: Session, summa
             communication_score_content = call_gpt_api(settings.COMMUNICATION_SCORE_MESSAGE, communication_score_evaluation)  # "ft:gpt-3.5-turbo-0613:personal::8Ad342wv"
             tips_errors = call_gpt_api(settings.TIPS_ERRORS_MESSAGE, sample_evaluation_data)
 
-            # Token Count
-            summary_content_token = num_tokens_from_string(settings.OVERALL_SUMMARY_MESSAGE + sample_evaluation_data)
-            score_content_token = num_tokens_from_string(settings.OVERALL_SCORE_MESSAGE + score_evaluation)
-            communication_summary_content_token = num_tokens_from_string(settings.COMMUNICATION_SUMMARY_MESSAGE + sample_evaluation_data)
-            communication_score_content_token = num_tokens_from_string(settings.COMMUNICATION_SCORE_MESSAGE + communication_score_evaluation)
-            tips_errors_token = num_tokens_from_string(settings.TIPS_ERRORS_MESSAGE + sample_evaluation_data)
+            # Input Token Count
+            summary_content_input_token = num_tokens_from_string(settings.OVERALL_SUMMARY_MESSAGE + sample_evaluation_data)
+            score_content_input_token = num_tokens_from_string(settings.OVERALL_SCORE_MESSAGE + score_evaluation)
+            communication_input_summary_content_token = num_tokens_from_string(settings.COMMUNICATION_SUMMARY_MESSAGE + sample_evaluation_data)
+            communication_input_score_content_token = num_tokens_from_string(settings.COMMUNICATION_SCORE_MESSAGE + communication_score_evaluation)
+            tips_errors_input_token = num_tokens_from_string(settings.TIPS_ERRORS_MESSAGE + sample_evaluation_data)
+
+            # Output Token Count
+            summary_content_output_token = num_tokens_from_string(summary_content)
+            score_content_output_token = num_tokens_from_string(score_content)
+            communication_output_summary_content_token = num_tokens_from_string(communication_summary_content)
+            communication_output_score_content_token = num_tokens_from_string(communication_score_content)
+            tips_errors_output_token = num_tokens_from_string(tips_errors)
 
             # CSV Data Appending
-            overall_score_file.append([eval_id, overall_score_content, score_content, score_content_token])
-            overall_summary_file.append([eval_id, overall_summary_content, summary_content, summary_content_token])
+            overall_score_file.append([eval_id, overall_score_content, score_content, score_content_input_token,
+                                       score_content_output_token])
+            overall_summary_file.append([eval_id, overall_summary_content, summary_content, summary_content_input_token,
+                                         summary_content_output_token])
             communication_score_file.append([eval_id, actual_communication_score_content, communication_score_content,
-                                             communication_score_content_token])
+                                             communication_input_score_content_token, communication_output_score_content_token])
             communication_summary_file.append([eval_id, actual_communication_summary_content,
-                                               communication_summary_content, communication_summary_content_token])
-            tips_errors_file.append([eval_id, actual_tips_errors_content, tips_errors, tips_errors_token])
+                                               communication_summary_content, communication_input_summary_content_token,
+                                               communication_output_summary_content_token])
+            tips_errors_file.append([eval_id, actual_tips_errors_content, tips_errors, tips_errors_input_token,
+                                     tips_errors_output_token])
 
     # CSV Filenames
     overall_score_csv_filename = f"./predicted_files/singleton/{dir_name}/overall_score_non.csv"
