@@ -79,6 +79,7 @@ def generate_evaluation_singleton(case_studies_id: list, session: Session, summa
 
     for cs_id in case_studies_id:
         name, instructions, abbreviations, email_instructions, context = fetch_case_study(cs_id, session)
+        print(f"Case Study ID: {cs_id}")
         ''' Case Study Summary'''
         if summary_var:
             instructions, email_instructions, context = generate_summary(instructions, email_instructions, context)
@@ -89,7 +90,7 @@ def generate_evaluation_singleton(case_studies_id: list, session: Session, summa
         for record in evaluations_records:
             eval_id, overall_score, overall_summary, communication_score, communication_summary, communication_errors, \
                 communication_tips, trainee_answer = record
-
+            print(f"Evaluation ID: {eval_id}")
             # Create Evaluation Sample and Other Data
             sample_evaluation_data = create_evaluation_sample(name, instructions, abbreviations,
                                                               email_instructions, context, trainee_answer)
