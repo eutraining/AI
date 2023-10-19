@@ -7,7 +7,7 @@ class Settings:
     API_BACKOFF = 2
     # OpenAI Environment Variables
     TIMEOUT = 90
-    OPENAI_API_KEY = "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"
+    OPENAI_API_KEY = "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"
     GPT_MODEL = "gpt3.5"
     # Fine-Tuning Variables
     N_EPOCHS = 15
