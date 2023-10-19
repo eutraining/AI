@@ -43,3 +43,47 @@ Use the package manager [pip](https://pip.pypa.io/en/stable/installation/) to in
 ```bash
 pip install -r requirements.txt
 ```
+
+## Usage
+- ### Data Analysis
+Extract Case Study, Review Guide and Evaluation Files Details and update the SQLite DataBase.
+```bash
+python3 -m data_analysis.main 
+```
+
+- ### OpenAI Training
+1. Generate Training Files for Fine-tuning Clubbed Method with Summary inclusion parameter.
+```bash
+python3 -m openai_training.main clubbed -i YES/NO
+```
+
+2. Generate Training Files for Fine-tuning Singleton Method with Summary inclusion parameter.
+```bash
+python3 -m openai_training.main singleton -i YES/NO
+```
+
+3. Fine-tuning the OpenAI model for clubbed method with Summary inclusion.
+```bash
+python3 -m openai_training.main clubbed_finetune -i YES/NO
+```
+
+4. Fine-tuning the OpenAI model for clubbed method with Summary inclusion.
+```bash
+python3 -m openai_training.main singleton_finetune -i YES/NO
+```
+
+5. Generate Train/Test Files in CSV format for training and validation purpose.
+```bash
+python3 -m openai_training.main train_test -i YES/NO
+```
+
+- ### Evaluation Files
+1. Evaluate the dataset using Clubbed Method with Summary inclusion parameter.
+```bash
+python3 -m evaluation_files.main clubbed -i YES/NO
+```
+
+2. Evaluate the dataset using Singleton Method with Summary inclusion parameter.
+```bash
+python3 -m evaluation_files.main singleton -i YES/NO
+```
