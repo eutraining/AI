@@ -7,7 +7,8 @@ Under the SUMMARY section:
         2. Where I suggest improvement is …., …. and …..
         3. The quality, relevance, conciseness of your arguments was…
     - You may wish to suggest a few personalized tips for practice or improvement based on your observations of the candidate’s submission.
-
+    - Take the communication summary feedback into consideration and give the overall summary accordingly without using
+        its content into output, just use it for reference.
 In the output provide the OVERALL_SUMMARY in the format:
     - SUMMARY
 DO NOT PROVIDE ANY OTHER INFORMATION EXCEPT THIS!

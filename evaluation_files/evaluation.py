@@ -15,8 +15,14 @@ def num_tokens_from_string(string: str) -> int:
     return num_tokens
 
 
+def add_score(evaluation_data: str, score: str, metric: str) -> str:
+    metric_data = f"\n\n{metric} Score Feedback: \n{score}"
+    data = evaluation_data + metric_data
+    return data
+
+
 def add_summary(sample_evaluation: str, summary: str, metric: str) -> str:
-    metric_data = f"\n\n{metric} Summary: \n{summary}\n"
+    metric_data = f"\n\n{metric} Summary Feedback: \n{summary}\n"
     data = sample_evaluation + metric_data
     return data
 
@@ -102,16 +108,25 @@ def generate_evaluation_singleton(case_studies_id: list, session: Session, summa
             actual_tips_errors_content = create_tips_errors(communication_tips, communication_errors)
 
             # GPT Data Fetching
-            summary_content = call_gpt_api(settings.OVERALL_SUMMARY_MESSAGE, sample_evaluation_data)
-            score_evaluation = add_summary(sample_evaluation_data, summary_content, "Overall")
-            score_content = call_gpt_api(settings.OVERALL_SCORE_MESSAGE, score_evaluation)  # "ft:gpt-3.5-turbo-0613:personal::8AdMdd1c"
             communication_summary_content = call_gpt_api(settings.COMMUNICATION_SUMMARY_MESSAGE, sample_evaluation_data)
-            communication_score_evaluation = add_summary(sample_evaluation_data, communication_summary_content, "Communication")
-            communication_score_content = call_gpt_api(settings.COMMUNICATION_SCORE_MESSAGE, communication_score_evaluation)  # "ft:gpt-3.5-turbo-0613:personal::8Ad342wv"
+            communication_score_evaluation = add_summary(sample_evaluation_data, communication_summary_content,
+                                                         "Communication")
+            communication_score_content = call_gpt_api(settings.COMMUNICATION_SCORE_MESSAGE,
+                                                       communication_score_evaluation)  # "ft:gpt-3.5-turbo-0613:personal::8Ad342wv"
+            ''''''
+            summary_evaluation = add_summary(sample_evaluation_data, communication_summary_content,
+                                             "Communication")
+            summary_evaluation += add_score(summary_evaluation, communication_score_content, "Communication")
+            summary_content = call_gpt_api(settings.OVERALL_SUMMARY_MESSAGE, summary_evaluation)
+            ''''''
+            score_evaluation = add_summary(summary_evaluation, summary_content, "Overall")
+
+            score_content = call_gpt_api(settings.OVERALL_SCORE_MESSAGE, score_evaluation)  # "ft:gpt-3.5-turbo-0613:personal::8AdMdd1c"
+            ''''''
             tips_errors = call_gpt_api(settings.TIPS_ERRORS_MESSAGE, sample_evaluation_data)
 
             # Input Token Count
-            summary_content_input_token = num_tokens_from_string(settings.OVERALL_SUMMARY_MESSAGE + sample_evaluation_data)
+            summary_content_input_token = num_tokens_from_string(settings.OVERALL_SUMMARY_MESSAGE + summary_evaluation)
             score_content_input_token = num_tokens_from_string(settings.OVERALL_SCORE_MESSAGE + score_evaluation)
             communication_input_summary_content_token = num_tokens_from_string(settings.COMMUNICATION_SUMMARY_MESSAGE + sample_evaluation_data)
             communication_input_score_content_token = num_tokens_from_string(settings.COMMUNICATION_SCORE_MESSAGE + communication_score_evaluation)
