@@ -138,11 +138,11 @@ def generate_evaluation_singleton(case_studies_id: list, session: Session, summa
                                      tips_errors_output_token])
 
     # CSV Filenames
-    overall_score_csv_filename = f"./predicted_files/singleton/{dir_name}/overall_score_non.csv"
-    overall_summary_csv_filename = f"./predicted_files/singleton/{dir_name}/overall_summary_non.csv"
-    communication_score_csv_filename = f"./predicted_files/singleton/{dir_name}/communication_score_non.csv"
-    communication_summary_csv_filename = f"./predicted_files/singleton/{dir_name}/communication_summary_non.csv"
-    tips_errors_summary_csv_filename = f"./predicted_files/singleton/{dir_name}/tips_errors_non.csv"
+    overall_score_csv_filename = f"./predicted_files/singleton/{dir_name}/overall_score_comm.csv"
+    overall_summary_csv_filename = f"./predicted_files/singleton/{dir_name}/overall_summary_comm.csv"
+    communication_score_csv_filename = f"./predicted_files/singleton/{dir_name}/communication_score_comm.csv"
+    communication_summary_csv_filename = f"./predicted_files/singleton/{dir_name}/communication_summary_comm.csv"
+    tips_errors_summary_csv_filename = f"./predicted_files/singleton/{dir_name}/tips_errors_comm.csv"
 
     # Creating CSV Files
     create_csv_file(overall_score_file, overall_score_csv_filename)

@@ -14,6 +14,7 @@ def call_gpt35_turbo(system_message: str, prompt: str, model="gpt-3.5-turbo-16k"
                 model=model,
                 temperature=0.0,
                 timeout=settings.TIMEOUT,
+                request_timeout=settings.TIMEOUT,
                 messages=[
                     {"role": "system", "content": system_message},
                     {"role": "user", "content": prompt},
@@ -39,6 +40,7 @@ def call_gpt3_davinci(system_message: str, prompt: str) -> str:
                 prompt=prompt,
                 temperature=0.0,
                 timeout=settings.TIMEOUT,
+                request_timeout=settings.TIMEOUT,
                 max_tokens=1000,
                 top_p=1,
                 frequency_penalty=0,
@@ -62,6 +64,7 @@ def call_gpt4(system_message: str, prompt: str) -> str:
                 model="gpt-4",
                 temperature=0.0,
                 timeout=settings.TIMEOUT,
+                request_timeout=settings.TIMEOUT,
                 messages=[
                     {"role": "system", "content": system_message},
                     {"role": "user", "content": prompt},

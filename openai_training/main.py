@@ -4,6 +4,7 @@ from sqlalchemy.orm import sessionmaker
 from openai_training.training_file import *
 from database.schema import CaseStudy, CaseStudyEvaluation
 from openai_training.finetune import generate_finetune
+from chatgpt_api.config import settings
 
 if __name__ == "__main__":
     # Create a parser object
@@ -14,7 +15,7 @@ if __name__ == "__main__":
     # Parse the command-line arguments
     args = parser.parse_args()
 
-    engine = create_engine('sqlite:///eutraining_v2.db')
+    engine = create_engine(settings.DB_PATH)
     Session = sessionmaker(bind=engine)
     session = Session()
 

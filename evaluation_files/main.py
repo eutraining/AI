@@ -13,7 +13,7 @@ if __name__ == "__main__":
     # Parse the command-line arguments
     args = parser.parse_args()
 
-    engine = create_engine('sqlite:///eutraining.db')
+    engine = create_engine(settings.DB_PATH)
     Session = sessionmaker(bind=engine)
     session = Session()
     case_studies_id = session.query(CaseStudy.case_study_id).all()

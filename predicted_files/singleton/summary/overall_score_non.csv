@@ -1,0 +1,100 @@
+ID,Actual,Predicted,Input Token Count,Output Token Count
+1,"Overall Score (out-off 10): 7.0
+
+",SCORE: (7/10),3720,7
+2,"Overall Score (out-off 10): 6.8
+
+",- SCORE (7/10),3081,7
+3,"Overall Score (out-off 10): 4.0
+
+",SCORE: 7/10,3452,6
+4,"Overall Score (out-off 10): 5.5
+
+",SCORE (4/10),3438,6
+5,"Overall Score (out-off 10): 5.0
+
+",SCORE (7/10),3381,6
+6,"Overall Score (out-off 10): 4.0
+
+",SCORE (7/10),4072,6
+7,"Overall Score (out-off 10): 7.0
+
+",SCORE (7/10),3460,6
+8,"Overall Score (out-off 10): 7.0
+
+",SCORE: 7/10,4325,6
+9,"Overall Score (out-off 10): 7.8
+
+",SCORE: (6/10),3909,7
+10,"Overall Score (out-off 10): 5.0
+
+",SCORE (6/10),4058,6
+11,"Overall Score (out-off 10): 7.0
+
+",SCORE (7/10),4071,6
+12,"Overall Score (out-off 10): 6.0
+
+",SCORE (7/10),4389,6
+13,"Overall Score (out-off 10): 5.0
+
+",SCORE: 5/10,3204,6
+14,"Overall Score (out-off 10): 6.8
+
+",- SCORE (7/10),3040,7
+15,"Overall Score (out-off 10): 8.8
+
+",- SCORE (8/10),3398,7
+16,"Overall Score (out-off 10): 8.0
+
+",SCORE: 8/10,3285,6
+17,"Overall Score (out-off 10): 7.0
+
+",- SCORE (6/10),3103,7
+18,"Overall Score (out-off 10): 7.0
+
+",SCORE: 7/10,2716,6
+19,"Overall Score (out-off 10): 8.0
+
+",SCORE: (8/10),2881,7
+20,"Overall Score (out-off 10): 7.0
+
+",SCORE: (7/10),3009,7
+21,"Overall Score (out-off 10): 6.0
+
+",SCORE: 6/10,4306,6
+22,"Overall Score (out-off 10): 6.0
+
+",SCORE: 7/10,4635,6
+23,"Overall Score (out-off 10): 4.0
+
+",SCORE (6/10),4239,6
+24,"Overall Score (out-off 10): 3.0
+
+",SCORE: 6/10,4193,6
+25,"Overall Score (out-off 10): 5.0
+
+",SCORE: (5/10),3727,7
+26,"Overall Score (out-off 10): 6.0
+
+",SCORE: 6/10,3593,6
+27,"Overall Score (out-off 10): 6.0
+
+",- SCORE (7/10),3955,7
+28,"Overall Score (out-off 10): 6.0
+
+",SCORE: 6/10,4347,6
+29,"Overall Score (out-off 10): 7.3
+
+",- SCORE (7/10),4698,7
+30,"Overall Score (out-off 10): 7.5
+
+",SCORE: 7/10,3793,6
+31,"Overall Score (out-off 10): 6.0
+
+",SCORE: 7/10,3887,6
+32,"Overall Score (out-off 10): 7.0
+
+",- SCORE (6/10),3157,7
+33,"Overall Score (out-off 10): 7.0
+
+",SCORE: 7/10,3840,6
