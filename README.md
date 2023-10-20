@@ -87,3 +87,35 @@ python3 -m evaluation_files.main clubbed -i YES/NO
 ```bash
 python3 -m evaluation_files.main singleton -i YES/NO
 ```
+
+# DigitalOcean Cloud Function
+```bash
+cd cloud-functions
+```
+## Introduction
+Serverless Backend for EUTraining
+Documentation: https://docs.digitalocean.com/products/functions.
+
+### Requirements
+
+* DigitalOcean account. If you don't already have one, you can sign up at [https://cloud.digitalocean.com/registrations/new](https://cloud.digitalocean.com/registrations/new).
+* To deploy from the command line, you will need the [DigitalOcean `doctl` CLI](https://github.com/digitalocean/doctl/releases).
+
+
+## Deploying the Function
+
+### 1) Setup Digital Ocean CLI for serverless
+1. Follow the instructions to install `doctl`: https://docs.digitalocean.com/reference/doctl/how-to/install/
+2. Make sure to install serverless support from the same guide
+
+### 2) Setup Digital Ocean Namespace
+```bash
+# Login to namespace
+doctl serverless namespaces connnect eutraining
+```
+
+### 3) Deploy Project
+```bash
+# Deploy the project building remotely
+doctl serverless deploy cloud-functions --remote-build
+```
