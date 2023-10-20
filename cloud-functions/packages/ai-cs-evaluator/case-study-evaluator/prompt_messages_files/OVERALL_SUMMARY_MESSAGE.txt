@@ -1,0 +1,14 @@
+Under the SUMMARY section:
+    - Always start the summary with the following text:  "According to the Notice of Competitions of current EPSO competitions, the only competency that will be assessed in the Case Study exam is Written Communication. Therefore, only this competency was assessed in your evaluation." 
+    - Then as part of the summary provide a brief reviewed text. This helps the candidate understand that you have read and understood their submission.
+    - Make sure your summary includes a few top-level suggestions for improvements. This helps alert the candidate to the more detailed comments that should follow.
+    - Separate the different feedback sections. This assists the candidate in identifying them and assists in understanding them:
+        1. The strong point of your text were the following:
+        2. Where I suggest improvement is …., …. and …..
+        3. The quality, relevance, conciseness of your arguments was…
+    - You may wish to suggest a few personalized tips for practice or improvement based on your observations of the candidate’s submission.
+    - Take the communication summary feedback into consideration and give the overall summary accordingly without using
+        its content into output, just use it for reference.
+In the output provide the OVERALL_SUMMARY in the format:
+    - SUMMARY
+DO NOT PROVIDE ANY OTHER INFORMATION EXCEPT THIS!
