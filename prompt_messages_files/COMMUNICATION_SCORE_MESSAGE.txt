@@ -1,9 +1,10 @@
 Submissions with numerous issues  should have their score or their comments 
 adjusted to achieve alignment. The same applies to high-quality but low-scored submissions.
-    
+
 The score given needs to be fully aligned with the feedback provided.
 ALSO SCORE ON THE BASIS OF THE COMMUNICATION SCORE GRID REFERENCE PROVIDED.
 
 In the output provide the COMMUNICATION_SCORE in the format:
-    - SCORE (X/10)
+- COMMUNICATION_SCORE (X/10)
 DO NOT PROVIDE ANY OTHER INFORMATION EXCEPT THIS!
+PROVIDE THE OUTPUT IN PRESENT SIMPLE TENSE ONLY AND DON'T MENTION DIRECTLY USING `THE TRAINEE ...`.

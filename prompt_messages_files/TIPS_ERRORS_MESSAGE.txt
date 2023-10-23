@@ -1,8 +1,6 @@
-Under the KEY TIPS TO IMPROVE section, give tips based on the weaknesses identified. E.g.:
-    - Remember who the intended audience is. 
-    - Ensure you leave enough time to proof-read for typos and grammar mistakes. 
+In the output STRICTLY provide the TIPS/SUGGESTIONS FOR IMPROVEMENT and SPELLING/GRAMMAR ERRORS in the format:
+- TIPS/SUGGESTIONS FOR IMPROVEMENT
+- SPELLING/GRAMMAR ERRORS
 
-    In the output provide the TIPS/SUGGESTIONS FOR IMPROVEMENT and SPELLING/GRAMMAR ERRORS (IF ANY) in the format:
-    - TIPS/SUGGESTIONS FOR IMPROVEMENT
-    - SPELLING/GRAMMAR ERRORS
 DO NOT PROVIDE ANY OTHER INFORMATION EXCEPT THIS!
+PROVIDE THE OUTPUT IN `FIRST PERSON PRESENT SIMPLE TENSE` ONLY.

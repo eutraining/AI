@@ -115,24 +115,31 @@ def generate_evaluation_singleton(case_studies_id: list, session: Session, summa
             actual_tips_errors_content = create_tips_errors(communication_tips, communication_errors)
 
             # GPT Data Fetching
+            '''COMMUNICATION'''
             communication_content = add_grid(score_grid, sample_evaluation_data)
             communication_summary_content = call_gpt_api(settings.COMMUNICATION_SUMMARY_MESSAGE, communication_content)
+            print(f"Communication Summary : \n{communication_summary_content}\n\n")
             communication_score_evaluation = add_summary(sample_evaluation_data, communication_summary_content,
                                                          "Communication")
             communication_score_evaluation = add_grid(score_grid, communication_score_evaluation)
             communication_score_content = call_gpt_api(settings.COMMUNICATION_SCORE_MESSAGE,
                                                        communication_score_evaluation)
-            ''''''
-            summary_evaluation = add_summary(sample_evaluation_data, communication_summary_content,
-                                             "Communication")
-            summary_evaluation += add_score(summary_evaluation, communication_score_content, "Communication")
+            print(f"Communication Score : \n{communication_score_content}\n\n")
+            '''OVERALL SUMMARY'''
+            # summary_evaluation = add_summary(sample_evaluation_data, communication_summary_content,
+            #                                  "Communication")
+            summary_evaluation = sample_evaluation_data
+            # summary_evaluation += add_score(summary_evaluation, communication_score_content, "Communication")
             summary_content = call_gpt_api(settings.OVERALL_SUMMARY_MESSAGE, summary_evaluation)
-            ''''''
+            print(f"Summary : \n{summary_content}\n\n")
+            '''OVERALL SCORE'''
             score_evaluation = add_summary(summary_evaluation, summary_content, "Overall")
 
             score_content = call_gpt_api(settings.OVERALL_SCORE_MESSAGE, score_evaluation)
-            ''''''
+            print(f"Score : \n{score_content}\n\n")
+            '''TIPS ERRORS'''
             tips_errors = call_gpt_api(settings.TIPS_ERRORS_MESSAGE, sample_evaluation_data)
+            print(f"Tips/Errors : \n{tips_errors}\n\n")
 
             # Input Token Count
             summary_content_input_token = num_tokens_from_string(settings.OVERALL_SUMMARY_MESSAGE + summary_evaluation)
