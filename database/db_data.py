@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from database.schema import CaseStudy, CaseStudyEvaluation
+from database.schema import CaseStudy, CaseStudyEvaluation, ReviewGuide
 
 
 def fetch_prompt_message(filepath: str) -> str:
@@ -35,3 +35,11 @@ def fetch_case_study_evaluation(cs_id: int, session: Session) -> list:
             [eval_id, overall_score, overall_summary, communication_score, communication_summary, communication_errors,
              communication_tips, trainee_answer])
     return records_list
+
+
+def fetch_review_guide(cs_ind: int, session: Session) -> tuple:
+    record = session.get(ReviewGuide, cs_ind)
+    if record is not None:
+        score_grid = record.score_grid
+        sample_solution = record.recommendations
+        return score_grid, sample_solution

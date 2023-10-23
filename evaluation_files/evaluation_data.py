@@ -2,12 +2,13 @@ import csv
 
 
 def create_evaluation_sample(name: str, instructions: str, abbreviations: str,
-                             email_instructions: str, context: str, trainee_ans: str) -> str:
+                             email_instructions: str, context: str, trainee_ans: str, sample_solution: str) -> str:
     sample_data = f"Case Study Name: \n{name}\n\n" \
                   f"Instructions/Important Notice: \n{instructions}\n\n" \
                   f"Abbreviations (if any): \n{abbreviations}\n\n" \
                   f"Email Instructions to be followed: \n{email_instructions}\n\n" \
                   f"Case Study Content: \n{context}\n\n" \
+                  f"Sample Referenced Solution: \n{sample_solution}\n\n" \
                   f"Trainee's Answer: \n{trainee_ans}\n"
     return sample_data
 

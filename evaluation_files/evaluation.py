@@ -1,6 +1,6 @@
 import tiktoken
 from sqlalchemy.orm import Session
-from database.db_data import fetch_case_study, fetch_case_study_evaluation
+from database.db_data import fetch_case_study, fetch_case_study_evaluation, fetch_review_guide
 from chatgpt_api.openai_api import call_gpt_api
 from chatgpt_api.config import settings
 from evaluation_files.evaluation_data import *
@@ -85,6 +85,7 @@ def generate_evaluation_singleton(case_studies_id: list, session: Session, summa
 
     for cs_id in case_studies_id:
         name, instructions, abbreviations, email_instructions, context = fetch_case_study(cs_id, session)
+        score_grid, sample_solution = fetch_review_guide(cs_id, session)
         print(f"Case Study ID: {cs_id}")
         ''' Case Study Summary'''
         if summary_var:
@@ -99,7 +100,7 @@ def generate_evaluation_singleton(case_studies_id: list, session: Session, summa
             print(f"Evaluation ID: {eval_id}")
             # Create Evaluation Sample and Other Data
             sample_evaluation_data = create_evaluation_sample(name, instructions, abbreviations,
-                                                              email_instructions, context, trainee_answer)
+                                                              email_instructions, context, trainee_answer, sample_solution)
             # Actual Data Fetching
             overall_score_content = create_score_content("Overall", overall_score)
             overall_summary_content = create_summary_content("Overall", overall_summary)
@@ -153,11 +154,11 @@ def generate_evaluation_singleton(case_studies_id: list, session: Session, summa
                                      tips_errors_output_token])
 
     # CSV Filenames
-    overall_score_csv_filename = f"./predicted_files/singleton/{dir_name}/overall_score_comm.csv"
-    overall_summary_csv_filename = f"./predicted_files/singleton/{dir_name}/overall_summary_comm.csv"
-    communication_score_csv_filename = f"./predicted_files/singleton/{dir_name}/communication_score_comm.csv"
-    communication_summary_csv_filename = f"./predicted_files/singleton/{dir_name}/communication_summary_comm.csv"
-    tips_errors_summary_csv_filename = f"./predicted_files/singleton/{dir_name}/tips_errors_comm.csv"
+    overall_score_csv_filename = f"./predicted_files/singleton/{dir_name}/overall_score_sample.csv"
+    overall_summary_csv_filename = f"./predicted_files/singleton/{dir_name}/overall_summary_sample.csv"
+    communication_score_csv_filename = f"./predicted_files/singleton/{dir_name}/communication_score_sample.csv"
+    communication_summary_csv_filename = f"./predicted_files/singleton/{dir_name}/communication_summary_sample.csv"
+    tips_errors_summary_csv_filename = f"./predicted_files/singleton/{dir_name}/tips_errors_sample.csv"
 
     # Creating CSV Files
     create_csv_file(overall_score_file, overall_score_csv_filename)
