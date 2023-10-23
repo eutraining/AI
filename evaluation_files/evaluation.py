@@ -15,6 +15,12 @@ def num_tokens_from_string(string: str) -> int:
     return num_tokens
 
 
+def add_grid(score_grid: str, sample_evaluation_data: str) -> str:
+    grid_content = f"""\nCommunication Score grid Reference: \n{score_grid}\n"""
+    data = sample_evaluation_data + grid_content
+    return data
+
+
 def add_score(evaluation_data: str, score: str, metric: str) -> str:
     metric_data = f"\n\n{metric} Score Feedback: \n{score}"
     data = evaluation_data + metric_data
@@ -109,11 +115,13 @@ def generate_evaluation_singleton(case_studies_id: list, session: Session, summa
             actual_tips_errors_content = create_tips_errors(communication_tips, communication_errors)
 
             # GPT Data Fetching
-            communication_summary_content = call_gpt_api(settings.COMMUNICATION_SUMMARY_MESSAGE, sample_evaluation_data)
+            communication_content = add_grid(score_grid, sample_evaluation_data)
+            communication_summary_content = call_gpt_api(settings.COMMUNICATION_SUMMARY_MESSAGE, communication_content)
             communication_score_evaluation = add_summary(sample_evaluation_data, communication_summary_content,
                                                          "Communication")
+            communication_score_evaluation = add_grid(score_grid, communication_score_evaluation)
             communication_score_content = call_gpt_api(settings.COMMUNICATION_SCORE_MESSAGE,
-                                                       communication_score_evaluation)  # "ft:gpt-3.5-turbo-0613:personal::8Ad342wv"
+                                                       communication_score_evaluation)
             ''''''
             summary_evaluation = add_summary(sample_evaluation_data, communication_summary_content,
                                              "Communication")
@@ -122,14 +130,14 @@ def generate_evaluation_singleton(case_studies_id: list, session: Session, summa
             ''''''
             score_evaluation = add_summary(summary_evaluation, summary_content, "Overall")
 
-            score_content = call_gpt_api(settings.OVERALL_SCORE_MESSAGE, score_evaluation)  # "ft:gpt-3.5-turbo-0613:personal::8AdMdd1c"
+            score_content = call_gpt_api(settings.OVERALL_SCORE_MESSAGE, score_evaluation)
             ''''''
             tips_errors = call_gpt_api(settings.TIPS_ERRORS_MESSAGE, sample_evaluation_data)
 
             # Input Token Count
             summary_content_input_token = num_tokens_from_string(settings.OVERALL_SUMMARY_MESSAGE + summary_evaluation)
             score_content_input_token = num_tokens_from_string(settings.OVERALL_SCORE_MESSAGE + score_evaluation)
-            communication_input_summary_content_token = num_tokens_from_string(settings.COMMUNICATION_SUMMARY_MESSAGE + sample_evaluation_data)
+            communication_input_summary_content_token = num_tokens_from_string(settings.COMMUNICATION_SUMMARY_MESSAGE + communication_content)
             communication_input_score_content_token = num_tokens_from_string(settings.COMMUNICATION_SCORE_MESSAGE + communication_score_evaluation)
             tips_errors_input_token = num_tokens_from_string(settings.TIPS_ERRORS_MESSAGE + sample_evaluation_data)
 
@@ -154,11 +162,11 @@ def generate_evaluation_singleton(case_studies_id: list, session: Session, summa
                                      tips_errors_output_token])
 
     # CSV Filenames
-    overall_score_csv_filename = f"./predicted_files/singleton/{dir_name}/overall_score_sample.csv"
-    overall_summary_csv_filename = f"./predicted_files/singleton/{dir_name}/overall_summary_sample.csv"
-    communication_score_csv_filename = f"./predicted_files/singleton/{dir_name}/communication_score_sample.csv"
-    communication_summary_csv_filename = f"./predicted_files/singleton/{dir_name}/communication_summary_sample.csv"
-    tips_errors_summary_csv_filename = f"./predicted_files/singleton/{dir_name}/tips_errors_sample.csv"
+    overall_score_csv_filename = f"./predicted_files/singleton/{dir_name}/overall_score_sample_grid.csv"
+    overall_summary_csv_filename = f"./predicted_files/singleton/{dir_name}/overall_summary_sample_grid.csv"
+    communication_score_csv_filename = f"./predicted_files/singleton/{dir_name}/communication_score_sample_grid.csv"
+    communication_summary_csv_filename = f"./predicted_files/singleton/{dir_name}/communication_summary_sample_grid.csv"
+    tips_errors_summary_csv_filename = f"./predicted_files/singleton/{dir_name}/tips_errors_sample_grid.csv"
 
     # Creating CSV Files
     create_csv_file(overall_score_file, overall_score_csv_filename)

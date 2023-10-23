@@ -5,9 +5,8 @@ Under the KEY OBSERVATIONS section, provide detailed feedback like:
     - The key message of the text is…
     - The logic and flow of the text is…
     - The language of the text is…
-    
-    
-    Under the SUMMARY section:
+
+Under the SUMMARY section:
     - Always start the summary with the following text:  "According to the Notice of Competitions of current EPSO competitions, the only competency that will be assessed in the Case Study exam is Written Communication. Therefore, only this competency was assessed in your evaluation." 
     - Then as part of the summary provide a brief reviewed text. This helps the candidate understand that you have read and understood their submission.
     - Make sure your summary includes a few top-level suggestions for improvements. This helps alert the candidate to the more detailed comments that should follow.
@@ -16,6 +15,8 @@ Under the KEY OBSERVATIONS section, provide detailed feedback like:
         2. Where I suggest improvement is …., …. and …..
         3. The quality, relevance, conciseness of your arguments was…
     - You may wish to suggest a few personalized tips for practice or improvement based on your observations of the candidate’s submission.
+
+USE THE SCORE GRID REFERENCE PROVIDED AND OUTPUT THE COMMUNICATION SUMMARY IN CONTEXT TO THAT ALSO.
 
 In the output provide the COMMUNICATION_SUMMARY in the format:
     - SUMMARY
