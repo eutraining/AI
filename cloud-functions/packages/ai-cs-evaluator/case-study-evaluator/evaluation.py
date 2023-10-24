@@ -28,7 +28,7 @@ def create_evaluation_sample(question: str, instructions: str, assignment: str,
                   f"Assignment: \n{assignment}\n\n" \
                   f"Case Study Content: \n{attachments}\n\n" \
                   f"Trainee's Answer: \n{trainee_ans}\n" \
-                  f"Sample Solution for reference: \n{sample_solution}\n"
+                  f"Sample Solution for Reference: \n{sample_solution}\n"
     return sample_data
 
 
@@ -45,12 +45,9 @@ def generate_evaluation(case_study_info: tuple, trainee_answer: str) -> tuple:
     communication_score_content = call_gpt_api(settings.COMMUNICATION_SCORE_MESSAGE,
                                                communication_score_evaluation)
     '''Overall Summary'''
-    summary_evaluation = add_summary(sample_evaluation_data, communication_summary_content,
-                                     "Communication")
-    summary_evaluation += add_score(summary_evaluation, communication_score_content, "Communication")
-    summary_content = call_gpt_api(settings.OVERALL_SUMMARY_MESSAGE, summary_evaluation)
+    summary_content = call_gpt_api(settings.OVERALL_SUMMARY_MESSAGE, sample_evaluation_data)
     '''Overall Score'''
-    score_evaluation = add_summary(summary_evaluation, summary_content, "Overall")
+    score_evaluation = add_summary(sample_evaluation_data, summary_content, "Overall")
 
     score_content = call_gpt_api(settings.OVERALL_SCORE_MESSAGE, score_evaluation)
     '''Tips/Errors'''
