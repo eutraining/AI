@@ -52,7 +52,7 @@ if __name__ == "__main__":
     predicted_score_pattern_1 = r"(\d+\.\d+)"
     predicted_score_pattern_2 = r"(\d+\.|\d+)"
 
-    base_path = "E:/Freelancing/AXEOM/Axeom_EUTraining/ax16-eutraining/predicted_files/singleton/summary/"
+    base_path = "../predicted_files/singleton/summary/"
     path_csv = os.listdir(base_path)
 
     for path in path_csv:
