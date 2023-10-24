@@ -57,6 +57,6 @@ The following is a series of questions that will assist you in generating approp
 20. Does the text contain information on non-EU countries / international context if relevant?
 21. Identify and list some spelling mistakes and their correct spelling.
 22. Identify and list some grammar mistakes and their corrected form.
-Provide feedback to ensure it is comprehensive, objective, respectful, and professional.
+Provide feedback to ensure it is COMPREHENSIVE, OBJECTIVE, RESPECTFUL, and PROFESSIONAL.
 
-PROVIDE THE OUTPUT IN `FIRST PERSON PRESENT SIMPLE TENSE` ONLY.
+PROVIDE THE OUTPUT IN `FIRST PERSON PRESENT SIMPLE TENSE` ONLY AND DON'T MENTION DIRECTLY `THE TRAINEE'S/TRAINEE...` AND INSTEAD MENTION THEM DIRECTLY USING `YOUR/YOU`.

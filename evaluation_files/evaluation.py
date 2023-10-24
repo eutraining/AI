@@ -126,10 +126,7 @@ def generate_evaluation_singleton(case_studies_id: list, session: Session, summa
                                                        communication_score_evaluation)
             print(f"Communication Score : \n{communication_score_content}\n\n")
             '''OVERALL SUMMARY'''
-            # summary_evaluation = add_summary(sample_evaluation_data, communication_summary_content,
-            #                                  "Communication")
             summary_evaluation = sample_evaluation_data
-            # summary_evaluation += add_score(summary_evaluation, communication_score_content, "Communication")
             summary_content = call_gpt_api(settings.OVERALL_SUMMARY_MESSAGE, summary_evaluation)
             print(f"Summary : \n{summary_content}\n\n")
             '''OVERALL SCORE'''
@@ -169,11 +166,11 @@ def generate_evaluation_singleton(case_studies_id: list, session: Session, summa
                                      tips_errors_output_token])
 
     # CSV Filenames
-    overall_score_csv_filename = f"./predicted_files/singleton/{dir_name}/overall_score_sample_grid.csv"
-    overall_summary_csv_filename = f"./predicted_files/singleton/{dir_name}/overall_summary_sample_grid.csv"
-    communication_score_csv_filename = f"./predicted_files/singleton/{dir_name}/communication_score_sample_grid.csv"
-    communication_summary_csv_filename = f"./predicted_files/singleton/{dir_name}/communication_summary_sample_grid.csv"
-    tips_errors_summary_csv_filename = f"./predicted_files/singleton/{dir_name}/tips_errors_sample_grid.csv"
+    overall_score_csv_filename = f"./predicted_files/singleton/{dir_name}/overall_score_v2.csv"
+    overall_summary_csv_filename = f"./predicted_files/singleton/{dir_name}/overall_summary_v2.csv"
+    communication_score_csv_filename = f"./predicted_files/singleton/{dir_name}/communication_score_v2.csv"
+    communication_summary_csv_filename = f"./predicted_files/singleton/{dir_name}/communication_summary_v2.csv"
+    tips_errors_summary_csv_filename = f"./predicted_files/singleton/{dir_name}/tips_errors_v2.csv"
 
     # Creating CSV Files
     create_csv_file(overall_score_file, overall_score_csv_filename)
