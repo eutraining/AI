@@ -88,6 +88,13 @@ python3 -m evaluation_files.main clubbed -i YES/NO
 python3 -m evaluation_files.main singleton -i YES/NO
 ```
 
+- ### Test Files
+1. Accuracy check for evaluation CSV files of OVERALL and COMMUNICATION SCORES.
+```bash
+cd test
+python -m accuracy
+```
+
 # DigitalOcean Cloud Function
 ```bash
 cd cloud-functions
@@ -119,3 +126,4 @@ doctl serverless namespaces connnect eutraining
 # Deploy the project building remotely
 doctl serverless deploy cloud-functions --remote-build
 ```
+
