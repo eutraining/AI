@@ -1,7 +1,8 @@
 import tiktoken
+import pandas as pd
 from sqlalchemy.orm import Session
 from database.db_data import fetch_case_study, fetch_case_study_evaluation, fetch_review_guide
-from chatgpt_api.openai_api import call_gpt_api
+from chatgpt_api.openai_api import call_gpt_api, call_babbage_score
 from chatgpt_api.config import settings
 from evaluation_files.evaluation_data import *
 from openai_training.training_file import generate_summary
@@ -179,4 +180,77 @@ def generate_evaluation_singleton(case_studies_id: list, session: Session, summa
     create_csv_file(communication_summary_file, communication_summary_csv_filename)
     create_csv_file(tips_errors_file, tips_errors_summary_csv_filename)
 
+
+def babbage_score(case_studies_id: list, session: Session, summary_var: bool) -> None:
+    # JSONL Files list
+    overall_score_file = [["ID", "Actual", "Predicted", "Input Token Count", "Output Token Count"]]
+    communication_score_file = [["ID", "Actual", "Predicted", "Input Token Count", "Output Token Count"]]
+
+    dir_name = "non_summary"
+
+    df = pd.read_csv(f"./dataset_files/test.csv")
+    evaluation_ids = []
+    for ind, row in df.iterrows():
+        evaluation_ids.append(row["Evaluation ID"])
+
+    for cs_id in case_studies_id:
+        name, instructions, abbreviations, email_instructions, context = fetch_case_study(cs_id, session)
+        score_grid, sample_solution = fetch_review_guide(cs_id, session)
+        print(f"Case Study ID: {cs_id}")
+        ''' Case Study Summary'''
+        if summary_var:
+            instructions, email_instructions, context = generate_summary(instructions, email_instructions, context)
+            dir_name = "summary"
+
+        evaluations_records = fetch_case_study_evaluation(cs_id, session)
+
+        for record in evaluations_records:
+            eval_id, overall_score, overall_summary, communication_score, communication_summary, communication_errors, \
+                communication_tips, trainee_answer = record
+            if eval_id not in evaluation_ids:
+                continue
+            print(f"Evaluation ID: {eval_id}")
+            # Create Evaluation Sample and Other Data
+            sample_evaluation_data = create_evaluation_sample(name, instructions, abbreviations,
+                                                              email_instructions, context, trainee_answer,
+                                                              sample_solution)
+            # Actual Data Fetching
+            overall_score_content = create_score_content("Overall", overall_score)
+            actual_communication_score_content = create_score_content("Communication", communication_score)
+
+            # GPT Data Fetching
+            '''COMMUNICATION'''
+            communication_score_evaluation = add_grid(score_grid, sample_evaluation_data)
+            communication_score_content = call_babbage_score("ft:babbage-002:eu-training::8DX5KVTh", settings.COMMUNICATION_SCORE_MESSAGE +
+                                                             "\n" + communication_score_evaluation)
+            print(f"Communication Score : \n{communication_score_content}\n\n")
+
+            '''OVERALL SCORE'''
+            score_content = call_babbage_score("ft:babbage-002:eu-training::8DX341RX", settings.OVERALL_SCORE_MESSAGE + "\n" + sample_evaluation_data)
+            print(f"Score : \n{score_content}\n\n")
+
+            # Input Token Count
+            score_content_input_token = num_tokens_from_string(settings.OVERALL_SCORE_MESSAGE + sample_evaluation_data)
+            communication_input_score_content_token = num_tokens_from_string(
+                settings.COMMUNICATION_SCORE_MESSAGE + communication_score_evaluation)
+
+            # Output Token Count
+            score_content_output_token = num_tokens_from_string(score_content)
+            communication_output_score_content_token = num_tokens_from_string(communication_score_content)
+
+            # CSV Data Appending
+            overall_score_file.append([eval_id, overall_score_content, score_content, score_content_input_token,
+                                       score_content_output_token])
+
+            communication_score_file.append([eval_id, actual_communication_score_content, communication_score_content,
+                                             communication_input_score_content_token,
+                                             communication_output_score_content_token])
+
+    # CSV Filenames
+    overall_score_csv_filename = f"./predicted_files/singleton/{dir_name}/overall_score_babbage_sample_{settings.N_EPOCHS}.csv"
+    communication_score_csv_filename = f"./predicted_files/singleton/{dir_name}/communication_score_babbage_sample_{settings.N_EPOCHS}.csv"
+
+    # Creating CSV Files
+    create_csv_file(overall_score_file, overall_score_csv_filename)
+    create_csv_file(communication_score_file, communication_score_csv_filename)
 

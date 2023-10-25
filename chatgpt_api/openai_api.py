@@ -88,3 +88,22 @@ def call_gpt_api(system_message: str, prompt: str, model="gpt-3.5-turbo-16k") ->
     else:
         # GPT-4
         return call_gpt4(system_message, prompt)
+
+
+def call_babbage_score(model: str, prompt: str):
+    result = ""
+    tries = 0
+    while not result and tries < settings.API_TRIES:
+        try:
+            openai.api_key = settings.OPENAI_API_KEY
+            response = openai.Completion.create(
+                model=model,
+                prompt=prompt,
+                temperature=0.0,
+            )
+            # Get the generated text
+            result = response["choices"][0]["text"]
+        except Exception as e:
+            print(str(e))
+            tries += 1
+    return result

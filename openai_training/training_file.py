@@ -1,7 +1,7 @@
 import random
 import pandas as pd
 from sqlalchemy.orm import Session
-from database.db_data import fetch_case_study, fetch_case_study_evaluation
+from database.db_data import fetch_case_study, fetch_case_study_evaluation, fetch_review_guide
 from database.schema import CaseStudyEvaluation
 from chatgpt_api.openai_api import call_gpt_api
 from openai_training.training_data import *
@@ -31,7 +31,7 @@ def generate_training_clubbed(case_studies_id: list, session: Session, summary_v
         evaluations_records = fetch_case_study_evaluation(cs_id, session)
         for record in evaluations_records:
             eval_id, overall_score, overall_summary, communication_score, communication_summary, communication_errors, \
-            communication_tips, trainee_answer = record
+               communication_tips, trainee_answer = record
             # Create Evaluation Sample and Other Data
             sample_evaluation_data = create_evaluation_sample(name, instructions, abbreviations,
                                                               email_instructions, context, trainee_answer)
@@ -69,6 +69,7 @@ def generate_training_singleton(case_studies_id: list, session: Session, summary
 
     for cs_id in case_studies_id:
         name, instructions, abbreviations, email_instructions, context = fetch_case_study(cs_id, session)
+        score_grid, sample_solution = fetch_review_guide(cs_id, session)
         ''' Case Study Summary'''
         if summary_var:
             instructions, email_instructions, context = generate_summary(instructions, email_instructions, context)
@@ -79,7 +80,8 @@ def generate_training_singleton(case_studies_id: list, session: Session, summary
                 communication_tips, trainee_answer = record
             # Create Evaluation Sample and Other Data
             sample_evaluation_data = create_evaluation_sample(name, instructions, abbreviations,
-                                                              email_instructions, context, trainee_answer)
+                                                              email_instructions, context, trainee_answer,
+                                                              sample_solution)
             overall_score_content = create_score_content("Overall", overall_score)
             # overall_summary_content = create_summary_content("Overall", overall_summary)
             communication_score_content = create_score_content("Communication", communication_score)
@@ -104,9 +106,9 @@ def generate_training_singleton(case_studies_id: list, session: Session, summary
             # tips_errors_file.append(tips_errors_dict)
 
     '''JSONL Filenames'''
-    overall_score_jsonl_filename = f"./dataset_files/singleton/{dir_name}/overall_score_v2.jsonl"
+    overall_score_jsonl_filename = f"./dataset_files/singleton/{dir_name}/overall_score_v2_sample.jsonl"
     # overall_summary_jsonl_filename = f"./dataset_files/singleton/{dir_name}/overall_summary.jsonl"
-    communication_score_jsonl_filename = f"./dataset_files/singleton/{dir_name}/communication_score_v2.jsonl"
+    communication_score_jsonl_filename = f"./dataset_files/singleton/{dir_name}/communication_score_v2_sample.jsonl"
     # communication_summary_jsonl_filename = f"./dataset_files/singleton/{dir_name}/communication_summary.jsonl"
     # tips_errors_summary_jsonl_filename = f"./dataset_files/singleton/{dir_name}/tips_errors.jsonl"
     '''Creating JSONL Files'''
