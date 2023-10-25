@@ -59,5 +59,7 @@ if __name__ == "__main__":
         csv_path = base_path + path
         if path.find("communication_score") != -1:
             get_accuracy(csv_path, actual_score_pattern, predicted_score_pattern_1, predicted_score_pattern_2)
+            print("-*" * 50)
         elif path.find("overall_score") != -1:
             get_accuracy(csv_path, actual_score_pattern, predicted_score_pattern_1, predicted_score_pattern_2)
+            print("-*" * 50)
