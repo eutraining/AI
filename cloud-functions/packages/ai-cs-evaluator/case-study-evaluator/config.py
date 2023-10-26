@@ -8,7 +8,7 @@ class Settings:
     # OpenAI Environment Variables
     TIMEOUT = 90
     REQUEST_TIMEOUT = 180
-    OPENAI_API_KEY = "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"
+    OPENAI_API_KEY = " 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"
     GPT_MODEL = "gpt3.5"
     # Prompt Messages
     BASE_MESSAGE = fetch_prompt_message("./prompt_messages_files/BASE_MESSAGE.txt")

@@ -23,7 +23,7 @@ class Settings:
     COMMUNICATION_SUMMARY_MESSAGE = BASE_MESSAGE + fetch_prompt_message("./prompt_messages_files/COMMUNICATION_SUMMARY_MESSAGE.txt")
     SUMMARY_MESSAGE = fetch_prompt_message("./prompt_messages_files/SUMMARY_MESSAGE.txt")
     # DB Variables
-    DB_PATH = "sqlite:///eutraining_v2.db"
+    DB_PATH = "sqlite:///eutraining.db"
 
 
 settings = Settings()
