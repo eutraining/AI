@@ -77,6 +77,26 @@ python3 -m openai_training.main singleton_finetune -i YES/NO
 python3 -m openai_training.main train_test -i YES/NO
 ```
 
+6. Generate Train/Test JSONL Files for Training Babbage model.
+```bash
+python3 -m openai_training.main babbage-dataset-split -o train/test
+```
+
+7. Fine-tune Babbage Model for Overall/Communication Score metric.
+```bash 
+python3 -m openai_training.main babbage-finetune -i overall/communication
+```
+
+8. Generate Train/Test JSONL Files for Training GPT3.5 TURBO model.
+```bash
+python3 -m openai_training.main gpt-dataset-split -o train/test
+```
+
+9. Fine-tune GPT3.5 TURBO Model for Overall/Communication Score metric.
+```bash 
+python3 -m openai_training.main gpt-finetune -i overall/communication
+```
+
 - ### Evaluation Files
 1. Evaluate the dataset using Clubbed Method with Summary inclusion parameter.
 ```bash
@@ -86,6 +106,16 @@ python3 -m evaluation_files.main clubbed -i YES/NO
 2. Evaluate the dataset using Singleton Method with Summary inclusion parameter.
 ```bash
 python3 -m evaluation_files.main singleton -i YES/NO
+```
+
+3. Evaluate the test dataset with Babbage Trained Model with Summary inclusion parameter.
+```bash
+python3 -m evaluation_files.main babbage-score -i YES/NO
+```
+
+4. Evaluate the test dataset with GPT3.5 TURBO Trained Model with Summary inclusion parameter.
+```bash
+python3 -m evaluation_files.main gpt-score -i YES/NO
 ```
 
 - ### Test Files
