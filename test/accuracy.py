@@ -35,7 +35,6 @@ def get_accuracy(df_path: str, actual_pattern: str, predicted_pattern_1: str, pr
     df = pd.read_csv(df_path)
     actual_list = []
     predicted_list = []
-    absolute_list = []
     tokens = 0
     total = 0
     for ind, row in df.iterrows():
