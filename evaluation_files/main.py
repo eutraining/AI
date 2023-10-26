@@ -29,5 +29,7 @@ if __name__ == "__main__":
         generate_evaluation_singleton(case_studies_id, session, summary_var)
     elif args.command == "babbage-score":
         babbage_score(case_studies_id, session, summary_var)
+    elif args.command == "gpt-score":
+        gpt_score(case_studies_id, session, summary_var)
 
     session.close()

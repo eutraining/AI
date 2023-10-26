@@ -121,4 +121,35 @@ def babbage_finetune(metric: str) -> None:
     print(f"Model Status: {model_status}")
 
 
+def create_gpt_dataset(split: str) -> None:
+    df = pd.read_csv(f"./dataset_files/{split}.csv")
+    evaluation_ids = []
+    result_comm = read_jsonl_with_index("./dataset_files/singleton/summary/communication_score_v2_sample_grid.jsonl")
+    result_overall = read_jsonl_with_index("./dataset_files/singleton/summary/overall_score_v2_sample_grid.jsonl")
+    for ind, row in df.iterrows():
+        evaluation_ids.append(row["Evaluation ID"])
+    communication_score_file = []
+    overall_score_file = []
+    for e_id in evaluation_ids:
+        comm_data = result_comm[e_id-1]
+        overall_data = result_overall[e_id-1]
+        communication_score_file.append(comm_data)
+        overall_score_file.append(overall_data)
+    create_jsonl_file(communication_score_file,
+                      f"./dataset_files/singleton/summary/communication_score_gpt3.5_{split}_sample_grid.jsonl")
+    create_jsonl_file(overall_score_file, f"./dataset_files/singleton/summary/overall_score_gpt3.5_{split}_sample_grid.jsonl")
+
+
+def gpt_finetune_train(metric: str) -> None:
+    file_path = ""
+    if metric == "overall":
+        file_path = "./dataset_files/singleton/summary/overall_score_gpt3.5_train_sample.jsonl"
+    elif metric == "communication":
+        file_path = "./dataset_files/singleton/summary/communication_score_gpt3.5_train_sample.jsonl"
+    f_id = upload_file(file_path)
+    f_name = "./fine_tuned_model_files/singleton/summary/" + file_path.split("/")[4].split(".")[0] + f"_{settings.N_EPOCHS}"
+    m_id, model_status = fine_tune_job(f_id, f_name, "gpt-3.5-turbo-0613")
+    print(f"Model ID: {m_id}")
+    print(f"Model Status: {model_status}")
+
 

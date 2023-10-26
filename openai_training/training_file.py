@@ -7,6 +7,12 @@ from chatgpt_api.openai_api import call_gpt_api
 from openai_training.training_data import *
 
 
+def add_grid(score_grid: str, sample_evaluation_data: str) -> str:
+    grid_content = f"""\nCommunication Score grid Reference: \n{score_grid}\n"""
+    data = sample_evaluation_data + grid_content
+    return data
+
+
 def generate_summary(instructions: str, email: str, content: str) -> tuple:
     instructions = call_gpt_api(settings.SUMMARY_MESSAGE, instructions)
     email = call_gpt_api(settings.SUMMARY_MESSAGE, email)
@@ -87,13 +93,14 @@ def generate_training_singleton(case_studies_id: list, session: Session, summary
             communication_score_content = create_score_content("Communication", communication_score)
             # communication_summary_content = create_summary_content("Communication", communication_summary)
             # tips_errors_content = create_tips_errors(communication_tips, communication_errors)
-
+            """Score Grid Add"""
+            communication_score_evaluation = add_grid(score_grid, sample_evaluation_data)
             """JSON Data Fetching"""
             score_content = create_dict_data(settings.OVERALL_SCORE_MESSAGE, sample_evaluation_data,
                                              overall_score_content)
             # summary_content = create_dict_data(settings.OVERALL_SUMMARY_MESSAGE, sample_evaluation_data,
             #                                    overall_summary_content)
-            communication_score_content = create_dict_data(settings.COMMUNICATION_SCORE_MESSAGE, sample_evaluation_data,
+            communication_score_content = create_dict_data(settings.COMMUNICATION_SCORE_MESSAGE, communication_score_evaluation,
                                                            communication_score_content)
             # communication_summary_content = create_dict_data(settings.COMMUNICATION_SUMMARY_MESSAGE,
             #                                                  sample_evaluation_data, communication_summary_content)
@@ -106,9 +113,9 @@ def generate_training_singleton(case_studies_id: list, session: Session, summary
             # tips_errors_file.append(tips_errors_dict)
 
     '''JSONL Filenames'''
-    overall_score_jsonl_filename = f"./dataset_files/singleton/{dir_name}/overall_score_v2_sample.jsonl"
+    overall_score_jsonl_filename = f"./dataset_files/singleton/{dir_name}/overall_score_v2_sample_grid.jsonl"
     # overall_summary_jsonl_filename = f"./dataset_files/singleton/{dir_name}/overall_summary.jsonl"
-    communication_score_jsonl_filename = f"./dataset_files/singleton/{dir_name}/communication_score_v2_sample.jsonl"
+    communication_score_jsonl_filename = f"./dataset_files/singleton/{dir_name}/communication_score_v2_sample_grid.jsonl"
     # communication_summary_jsonl_filename = f"./dataset_files/singleton/{dir_name}/communication_summary.jsonl"
     # tips_errors_summary_jsonl_filename = f"./dataset_files/singleton/{dir_name}/tips_errors.jsonl"
     '''Creating JSONL Files'''

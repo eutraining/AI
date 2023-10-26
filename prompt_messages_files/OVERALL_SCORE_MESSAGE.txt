@@ -1,7 +1,6 @@
 Submissions with numerous issues  should have their score or their comments 
 adjusted to achieve alignment. The same applies to high-quality but low-scored submissions.
 
-The score given needs to be fully aligned with the feedback provided.
 
 In the output provide the OVERALL_SCORE in the format:
 - OVERALL_SCORE (X/10)

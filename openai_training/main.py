@@ -3,7 +3,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from openai_training.training_file import *
 from database.schema import CaseStudy, CaseStudyEvaluation
-from openai_training.finetune import generate_finetune, babbage_finetune, create_babbage_dataset
+from openai_training.finetune import generate_finetune, babbage_finetune, create_babbage_dataset, create_gpt_dataset, gpt_finetune_train
 from chatgpt_api.config import settings
 
 
@@ -55,4 +55,9 @@ if __name__ == "__main__":
     elif args.command == "babbage-finetune":
         metric = args.input_path
         babbage_finetune(metric)
+    elif args.command == "gpt-dataset-split":
+        create_gpt_dataset(args.output_path)
+    elif args.command == "gpt-finetune":
+        metric = args.input_path
+        gpt_finetune_train(metric)
     session.close()

@@ -21,7 +21,7 @@ def create_overall_content(overall_summary: str, overall_score: float) -> str:
 
 
 def create_score_content(metric: str, score: float) -> str:
-    data = f"{metric} Score (out-off 10): {score}\n\n"
+    data = f"{metric.upper()} SCORE: {score}/10\n\n"
     return data
 
 

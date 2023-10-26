@@ -89,5 +89,5 @@ if __name__ == "__main__":
             accuracy_val = get_accuracy(csv_path, actual_score_pattern, predicted_score_pattern_1, predicted_score_pattern_2)
             accuracy_df.append(accuracy_val)
 
-    dataframe = pd.DataFrame(accuracy_df, columns=["Approach", "MAE Loss", "MES Loss", "RMSE Loss", "Average Token"])
+    dataframe = pd.DataFrame(accuracy_df, columns=["Approach", "MAE Loss", "MSE Loss", "RMSE Loss", "Average Token"])
     dataframe.to_csv(output_path, index=False)
