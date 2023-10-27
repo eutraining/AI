@@ -4,6 +4,7 @@ from sqlalchemy.orm import sessionmaker
 from database.schema import Base
 from chatgpt_api.config import settings
 from data_analysis.db import add_extracted_info_database
+from data_analysis.token import average_token
 
 
 if __name__ == "__main__":
@@ -19,5 +20,6 @@ if __name__ == "__main__":
     session = Session()
     # Function to execute the extraction and creation of records into DB
     add_extracted_info_database(base_folder_path, session)
+    avg_cs_token = average_token("./dataset_files/singleton/summary/overall_score_v2_sample.jsonl")
     # Close the session after inserting data
     session.close()
