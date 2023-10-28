@@ -2,8 +2,8 @@ import os
 import openai
 import json
 import pandas as pd
-from chatgpt_api.config import settings
-from openai_training.training_data import create_jsonl_file
+from config import settings
+from training.openai_training.training_data import create_jsonl_file
 
 openai.api_key = settings.OPENAI_API_KEY
 
@@ -44,8 +44,8 @@ def process_finetune(base_path: str, filename: str, model: str) -> None:
 
 
 def generate_finetune(dataset_type: str, summary_var: bool, model="gpt-3.5-turbo-0613") -> None:
-    base_path = "./dataset_files/"
-    f_name = "./fine_tuned_model_files/"
+    base_path = "./dataset/"
+    f_name = "./models/"
     if dataset_type == "clubbed":
         base_path += "clubbed/"
         f_name += "clubbed/"
@@ -90,10 +90,10 @@ def babbage_format_data(data: dict) -> dict:
 
 
 def create_babbage_dataset(split: str) -> None:
-    df = pd.read_csv(f"./dataset_files/{split}.csv")
+    df = pd.read_csv(f"./dataset/{split}.csv")
     evaluation_ids = []
-    result_comm = read_jsonl_with_index("./dataset_files/singleton/summary/communication_score_v2_sample.jsonl")
-    result_overall = read_jsonl_with_index("./dataset_files/singleton/summary/overall_score_v2_sample.jsonl")
+    result_comm = read_jsonl_with_index("./dataset/singleton/summary/communication_score_v2_sample.jsonl")
+    result_overall = read_jsonl_with_index("./dataset/singleton/summary/overall_score_v2_sample.jsonl")
     for ind, row in df.iterrows():
         evaluation_ids.append(row["Evaluation ID"])
     communication_score_file = []
@@ -104,28 +104,28 @@ def create_babbage_dataset(split: str) -> None:
         communication_score_file.append(comm_data)
         overall_score_file.append(overall_data)
     create_jsonl_file(communication_score_file,
-                      f"./dataset_files/singleton/summary/communication_score_babbage_{split}_sample.jsonl")
-    create_jsonl_file(overall_score_file, f"./dataset_files/singleton/summary/overall_score_babbage_{split}_sample.jsonl")
+                      f"./dataset/singleton/summary/communication_score_babbage_{split}_sample.jsonl")
+    create_jsonl_file(overall_score_file, f"./dataset/singleton/summary/overall_score_babbage_{split}_sample.jsonl")
 
 
 def babbage_finetune(metric: str) -> None:
     file_path = ""
     if metric == "overall":
-        file_path = "./dataset_files/singleton/summary/overall_score_babbage_train_sample.jsonl"
+        file_path = "./dataset/singleton/summary/overall_score_babbage_train_sample.jsonl"
     elif metric == "communication":
-        file_path = "./dataset_files/singleton/summary/communication_score_babbage_train_sample.jsonl"
+        file_path = "./dataset/singleton/summary/communication_score_babbage_train_sample.jsonl"
     f_id = upload_file(file_path)
-    f_name = "./fine_tuned_model_files/singleton/summary/" + file_path.split("/")[4].split(".")[0] + f"_{settings.N_EPOCHS}"
+    f_name = "./models/singleton/summary/" + file_path.split("/")[4].split(".")[0] + f"_{settings.N_EPOCHS}"
     m_id, model_status = fine_tune_job(f_id, f_name, "babbage-002")
     print(f"Model ID: {m_id}")
     print(f"Model Status: {model_status}")
 
 
 def create_gpt_dataset(split: str) -> None:
-    df = pd.read_csv(f"./dataset_files/{split}.csv")
+    df = pd.read_csv(f"./dataset/{split}.csv")
     evaluation_ids = []
-    result_comm = read_jsonl_with_index("./dataset_files/singleton/summary/communication_score_v2_sample_grid.jsonl")
-    result_overall = read_jsonl_with_index("./dataset_files/singleton/summary/overall_score_v2_sample_grid.jsonl")
+    result_comm = read_jsonl_with_index("./dataset/singleton/summary/communication_score_v2_sample_grid.jsonl")
+    result_overall = read_jsonl_with_index("./dataset/singleton/summary/overall_score_v2_sample_grid.jsonl")
     for ind, row in df.iterrows():
         evaluation_ids.append(row["Evaluation ID"])
     communication_score_file = []
@@ -136,18 +136,18 @@ def create_gpt_dataset(split: str) -> None:
         communication_score_file.append(comm_data)
         overall_score_file.append(overall_data)
     create_jsonl_file(communication_score_file,
-                      f"./dataset_files/singleton/summary/communication_score_gpt3.5_{split}_sample_grid.jsonl")
-    create_jsonl_file(overall_score_file, f"./dataset_files/singleton/summary/overall_score_gpt3.5_{split}_sample_grid.jsonl")
+                      f"./dataset/singleton/summary/communication_score_gpt3.5_{split}_sample_grid.jsonl")
+    create_jsonl_file(overall_score_file, f"./dataset/singleton/summary/overall_score_gpt3.5_{split}_sample_grid.jsonl")
 
 
 def gpt_finetune_train(metric: str) -> None:
     file_path = ""
     if metric == "overall":
-        file_path = "./dataset_files/singleton/summary/overall_score_gpt3.5_train_sample.jsonl"
+        file_path = "./dataset/singleton/summary/overall_score_gpt3.5_train_sample.jsonl"
     elif metric == "communication":
-        file_path = "./dataset_files/singleton/summary/communication_score_gpt3.5_train_sample.jsonl"
+        file_path = "./dataset/singleton/summary/communication_score_gpt3.5_train_sample.jsonl"
     f_id = upload_file(file_path)
-    f_name = "./fine_tuned_model_files/singleton/summary/" + file_path.split("/")[4].split(".")[0] + f"_{settings.N_EPOCHS}"
+    f_name = "./models/singleton/summary/" + file_path.split("/")[4].split(".")[0] + f"_{settings.N_EPOCHS}"
     m_id, model_status = fine_tune_job(f_id, f_name, "gpt-3.5-turbo-0613")
     print(f"Model ID: {m_id}")
     print(f"Model Status: {model_status}")

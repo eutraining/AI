@@ -2,11 +2,11 @@ import tiktoken
 import pandas as pd
 from sqlalchemy.orm import Session
 from database.db_data import fetch_case_study, fetch_case_study_evaluation, fetch_review_guide
-from chatgpt_api.openai_api import call_gpt_api, call_babbage_score
-from chatgpt_api.config import settings
-from evaluation_files.evaluation_data import *
-from openai_training.training_file import generate_summary
-from openai_training.training_data import create_score_content, create_summary_content
+from apis.openai_api import call_gpt_api, call_babbage_score
+from config import settings
+from evaluation.evaluation_data import *
+from training.openai_training.training_file import generate_summary
+from training.openai_training.training_data import create_score_content, create_summary_content
 
 
 def num_tokens_from_string(string: str) -> int:
@@ -52,7 +52,7 @@ def generate_evaluation_clubbed(case_studies_id: list, session: Session, summary
         evaluations_records = fetch_case_study_evaluation(cs_id, session)
         for record in evaluations_records:
             eval_id, overall_score, overall_summary, communication_score, communication_summary, communication_errors, \
-            communication_tips, trainee_answer = record
+                communication_tips, trainee_answer = record
 
             # Create Evaluation Sample Data
             sample_evaluation_data = create_evaluation_sample(name, instructions, abbreviations,
@@ -72,9 +72,9 @@ def generate_evaluation_clubbed(case_studies_id: list, session: Session, summary
             tips_errors_file.append([eval_id, tips_errors_content, tips_errors_dict])
 
     # JSONL Filenames
-    overall_score_summary_csv_filename = f"./predicted_files/clubbed/{dir_name}/overall_score_summary.csv"
-    communication_score_summary_csv_filename = f"./predicted_files/clubbed/{dir_name}/communication_score_summary.csv"
-    tips_errors_summary_csv_filename = f"./predicted_files/clubbed/{dir_name}/tips_errors.csv"
+    overall_score_summary_csv_filename = f"./training/results/clubbed/{dir_name}/overall_score_summary.csv"
+    communication_score_summary_csv_filename = f"./training/results/clubbed/{dir_name}/communication_score_summary.csv"
+    tips_errors_summary_csv_filename = f"./training/results/clubbed/{dir_name}/tips_errors.csv"
     # Creating JSONL Files
     create_csv_file(overall_score_summary_file, overall_score_summary_csv_filename)
     create_csv_file(communication_score_summary_file, communication_score_summary_csv_filename)
@@ -104,7 +104,7 @@ def generate_evaluation_singleton(case_studies_id: list, session: Session, summa
 
         for record in evaluations_records:
             eval_id, overall_score, overall_summary, communication_score, communication_summary, communication_errors, \
-            communication_tips, trainee_answer = record
+                communication_tips, trainee_answer = record
             print(f"Evaluation ID: {eval_id}")
             # Create Evaluation Sample and Other Data
             sample_evaluation_data = create_evaluation_sample(name, instructions, abbreviations,
@@ -119,35 +119,37 @@ def generate_evaluation_singleton(case_studies_id: list, session: Session, summa
 
             # GPT Data Fetching
             '''COMMUNICATION'''
-            communication_content = add_grid(score_grid, sample_evaluation_data)
-            communication_summary_content = call_gpt_api(settings.COMMUNICATION_SUMMARY_MESSAGE, communication_content)
+            # communication_content = add_grid(score_grid, sample_evaluation_data)
+            communication_summary_content = call_gpt_api(settings.COMMUNICATION_SUMMARY_MESSAGE, sample_evaluation_data)
             print(f"Communication Summary : \n{communication_summary_content}\n\n")
-            communication_score_evaluation = add_summary(sample_evaluation_data, communication_summary_content,
-                                                         "Communication")
-            communication_score_evaluation = add_grid(score_grid, communication_score_evaluation)
+            # communication_score_evaluation = add_summary(sample_evaluation_data, communication_summary_content,
+            #                                              "Communication")
+            # communication_score_evaluation = add_grid(score_grid, communication_score_evaluation)
             communication_score_content = call_gpt_api(settings.COMMUNICATION_SCORE_MESSAGE,
-                                                       communication_score_evaluation)
+                                                       sample_evaluation_data,
+                                                       model="ft:gpt-3.5-turbo-0613:eu-training::8DpWReUf")
             print(f"Communication Score : \n{communication_score_content}\n\n")
             '''OVERALL SUMMARY'''
-            summary_evaluation = sample_evaluation_data
-            summary_content = call_gpt_api(settings.OVERALL_SUMMARY_MESSAGE, summary_evaluation)
+            # summary_evaluation = sample_evaluation_data
+            summary_content = call_gpt_api(settings.OVERALL_SUMMARY_MESSAGE, sample_evaluation_data)
             print(f"Summary : \n{summary_content}\n\n")
             '''OVERALL SCORE'''
-            score_evaluation = add_summary(summary_evaluation, summary_content, "Overall")
+            # score_evaluation = add_summary(summary_evaluation, summary_content, "Overall")
 
-            score_content = call_gpt_api(settings.OVERALL_SCORE_MESSAGE, score_evaluation)
+            score_content = call_gpt_api(settings.OVERALL_SCORE_MESSAGE, sample_evaluation_data,
+                                         model="ft:gpt-3.5-turbo-0613:eu-training::8Dp8J3iS")
             print(f"Score : \n{score_content}\n\n")
             '''TIPS ERRORS'''
             tips_errors = call_gpt_api(settings.TIPS_ERRORS_MESSAGE, sample_evaluation_data)
             print(f"Tips/Errors : \n{tips_errors}\n\n")
 
             # Input Token Count
-            summary_content_input_token = num_tokens_from_string(settings.OVERALL_SUMMARY_MESSAGE + summary_evaluation)
-            score_content_input_token = num_tokens_from_string(settings.OVERALL_SCORE_MESSAGE + score_evaluation)
+            summary_content_input_token = num_tokens_from_string(settings.OVERALL_SUMMARY_MESSAGE + sample_evaluation_data)
+            score_content_input_token = num_tokens_from_string(settings.OVERALL_SCORE_MESSAGE + sample_evaluation_data)
             communication_input_summary_content_token = num_tokens_from_string(
-                settings.COMMUNICATION_SUMMARY_MESSAGE + communication_content)
+                settings.COMMUNICATION_SUMMARY_MESSAGE + sample_evaluation_data)
             communication_input_score_content_token = num_tokens_from_string(
-                settings.COMMUNICATION_SCORE_MESSAGE + communication_score_evaluation)
+                settings.COMMUNICATION_SCORE_MESSAGE + sample_evaluation_data)
             tips_errors_input_token = num_tokens_from_string(settings.TIPS_ERRORS_MESSAGE + sample_evaluation_data)
 
             # Output Token Count
@@ -172,11 +174,11 @@ def generate_evaluation_singleton(case_studies_id: list, session: Session, summa
                                      tips_errors_output_token])
 
     # CSV Filenames
-    overall_score_csv_filename = f"./predicted_files/singleton/{dir_name}/overall_score_v2.csv"
-    overall_summary_csv_filename = f"./predicted_files/singleton/{dir_name}/overall_summary_v2.csv"
-    communication_score_csv_filename = f"./predicted_files/singleton/{dir_name}/communication_score_v2.csv"
-    communication_summary_csv_filename = f"./predicted_files/singleton/{dir_name}/communication_summary_v2.csv"
-    tips_errors_summary_csv_filename = f"./predicted_files/singleton/{dir_name}/tips_errors_v2.csv"
+    overall_score_csv_filename = f"./training/results/singleton/{dir_name}/overall_score_v2.csv"
+    overall_summary_csv_filename = f"./training/results/singleton/{dir_name}/overall_summary_v2.csv"
+    communication_score_csv_filename = f"./training/results/singleton/{dir_name}/communication_score_v2.csv"
+    communication_summary_csv_filename = f"./training/results/singleton/{dir_name}/communication_summary_v2.csv"
+    tips_errors_summary_csv_filename = f"./training/results/singleton/{dir_name}/tips_errors_v2.csv"
 
     # Creating CSV Files
     create_csv_file(overall_score_file, overall_score_csv_filename)
@@ -211,7 +213,7 @@ def babbage_score(case_studies_id: list, session: Session, summary_var: bool) ->
 
         for record in evaluations_records:
             eval_id, overall_score, overall_summary, communication_score, communication_summary, communication_errors, \
-            communication_tips, trainee_answer = record
+                communication_tips, trainee_answer = record
             if eval_id not in evaluation_ids:
                 continue
             print(f"Evaluation ID: {eval_id}")
@@ -254,8 +256,8 @@ def babbage_score(case_studies_id: list, session: Session, summary_var: bool) ->
                                              communication_output_score_content_token])
 
     # CSV Filenames
-    overall_score_csv_filename = f"./predicted_files/singleton/{dir_name}/overall_score_babbage_sample_{settings.N_EPOCHS}.csv"
-    communication_score_csv_filename = f"./predicted_files/singleton/{dir_name}/communication_score_babbage_sample_{settings.N_EPOCHS}.csv"
+    overall_score_csv_filename = f"./training/results/singleton/{dir_name}/overall_score_babbage_sample_{settings.N_EPOCHS}.csv"
+    communication_score_csv_filename = f"./training/results/singleton/{dir_name}/communication_score_babbage_sample_{settings.N_EPOCHS}.csv"
 
     # Creating CSV Files
     create_csv_file(overall_score_file, overall_score_csv_filename)
@@ -329,8 +331,8 @@ def gpt_score(case_studies_id: list, session: Session, summary_var: bool) -> Non
                                              communication_output_score_content_token])
 
     # CSV Filenames
-    overall_score_csv_filename = f"./predicted_files/singleton/{dir_name}/overall_score_gpt3.5_sample_{settings.N_EPOCHS}.csv"
-    communication_score_csv_filename = f"./predicted_files/singleton/{dir_name}/communication_score_gpt3.5_sample_{settings.N_EPOCHS}.csv"
+    overall_score_csv_filename = f"./training/results/singleton/{dir_name}/overall_score_gpt3.5_sample_{settings.N_EPOCHS}.csv"
+    communication_score_csv_filename = f"./training/results/singleton/{dir_name}/communication_score_gpt3.5_sample_{settings.N_EPOCHS}.csv"
 
     # Creating CSV Files
     create_csv_file(overall_score_file, overall_score_csv_filename)

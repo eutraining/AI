@@ -45,13 +45,19 @@ pip install -r requirements.txt
 ```
 
 ## Usage
-- ### Data Analysis
-Extract Case Study, Review Guide and Evaluation Files Details and update the SQLite DataBase.
+### Data Analysis - Extraction
+1. Extract Case Study, Review Guide and Evaluation Files Details and update the SQLite DataBase.
 ```bash
-python3 -m data_analysis.main 
+python3 -m data_analysis.main extract
+```
+2. Get average tokens of Case Study Content sent into model.
+```bash
+python3 -m data_analysis.main average-tokens -i /path/to/jsonl/file
 ```
 
-- ### OpenAI Training
+---
+
+### Dataset Generation
 1. Generate Training Files for Fine-tuning Clubbed Method with Summary inclusion parameter.
 ```bash
 python3 -m openai_training.main clubbed -i YES/NO
@@ -62,68 +68,72 @@ python3 -m openai_training.main clubbed -i YES/NO
 python3 -m openai_training.main singleton -i YES/NO
 ```
 
-3. Fine-tuning the OpenAI model for clubbed method with Summary inclusion.
-```bash
-python3 -m openai_training.main clubbed_finetune -i YES/NO
-```
-
-4. Fine-tuning the OpenAI model for clubbed method with Summary inclusion.
-```bash
-python3 -m openai_training.main singleton_finetune -i YES/NO
-```
-
-5. Generate Train/Test Files in CSV format for training and validation purpose.
+3. Generate Train/Test Files in CSV format for training and validation purpose.
 ```bash
 python3 -m openai_training.main train_test -i YES/NO
 ```
 
-6. Generate Train/Test JSONL Files for Training Babbage model.
+4. Generate Train/Test JSONL Files for Training Babbage model.
 ```bash
 python3 -m openai_training.main babbage-dataset-split -o train/test
 ```
 
-7. Fine-tune Babbage Model for Overall/Communication Score metric.
-```bash 
-python3 -m openai_training.main babbage-finetune -i overall/communication
-```
-
-8. Generate Train/Test JSONL Files for Training GPT3.5 TURBO model.
+5. Generate Train/Test JSONL Files for Training GPT3.5 TURBO model.
 ```bash
 python3 -m openai_training.main gpt-dataset-split -o train/test
 ```
 
-9. Fine-tune GPT3.5 TURBO Model for Overall/Communication Score metric.
+---
+
+### OpenAI Training / Fine-tuning
+1. Fine-tuning the OpenAI model for clubbed method with Summary inclusion.
+```bash
+python3 -m openai_training.main clubbed_finetune -i YES/NO
+```
+
+2. Fine-tuning the OpenAI model for clubbed method with Summary inclusion.
+```bash
+python3 -m openai_training.main singleton_finetune -i YES/NO
+```
+
+3. Fine-tune Babbage Model for Overall/Communication Score metric.
+```bash 
+python3 -m openai_training.main babbage-finetune -i overall/communication
+```
+
+4. Fine-tune GPT3.5 TURBO Model for Overall/Communication Score metric.
 ```bash 
 python3 -m openai_training.main gpt-finetune -i overall/communication
 ```
 
-- ### Evaluation Files
+---
+
+### Evaluation / Validation / Accuracy 
 1. Evaluate the dataset using Clubbed Method with Summary inclusion parameter.
 ```bash
-python3 -m evaluation_files.main clubbed -i YES/NO
+python3 -m evaluation.main clubbed -i YES/NO
 ```
 
 2. Evaluate the dataset using Singleton Method with Summary inclusion parameter.
 ```bash
-python3 -m evaluation_files.main singleton -i YES/NO
+python3 -m evaluation.main singleton -i YES/NO
 ```
 
 3. Evaluate the test dataset with Babbage Trained Model with Summary inclusion parameter.
 ```bash
-python3 -m evaluation_files.main babbage-score -i YES/NO
+python3 -m evaluation.main babbage-score -i YES/NO
 ```
 
 4. Evaluate the test dataset with GPT3.5 TURBO Trained Model with Summary inclusion parameter.
 ```bash
-python3 -m evaluation_files.main gpt-score -i YES/NO
+python3 -m evaluation.main gpt-score -i YES/NO
 ```
 
-- ### Test Files
-1. Accuracy check for evaluation CSV files of OVERALL and COMMUNICATION SCORES.
+5. Accuracy check for evaluation CSV files of OVERALL and COMMUNICATION SCORES.
 ```bash
-cd test
-python -m accuracy
+python3 -m evaluation.main accuracy
 ```
+
 
 # DigitalOcean Cloud Function
 ```bash

@@ -1,7 +1,7 @@
 import argparse
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from chatgpt_api.config import settings
+from config import settings
 from ai_evaluation.csv_docx_data import evaluation_csv_docx
 
 if __name__ == "__main__":

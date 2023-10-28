@@ -1,5 +1,5 @@
 import openai
-from chatgpt_api.config import settings
+from config import settings
 
 
 def call_gpt35_turbo(system_message: str, prompt: str, model="gpt-3.5-turbo-16k") -> str:

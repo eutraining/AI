@@ -1,5 +1,5 @@
-from openai_training.finetune import read_jsonl_with_index
-from evaluation_files.evaluation import num_tokens_from_string
+from training.openai_training.finetune import read_jsonl_with_index
+from evaluation.evaluation import num_tokens_from_string
 
 
 def average_token(path: str) -> float:

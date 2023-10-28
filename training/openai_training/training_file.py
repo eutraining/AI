@@ -3,8 +3,8 @@ import pandas as pd
 from sqlalchemy.orm import Session
 from database.db_data import fetch_case_study, fetch_case_study_evaluation, fetch_review_guide
 from database.schema import CaseStudyEvaluation
-from chatgpt_api.openai_api import call_gpt_api
-from openai_training.training_data import *
+from apis.openai_api import call_gpt_api
+from training.openai_training.training_data import *
 
 
 def add_grid(score_grid: str, sample_evaluation_data: str) -> str:
@@ -54,9 +54,9 @@ def generate_training_clubbed(case_studies_id: list, session: Session, summary_v
             tips_errors_file.append(tips_errors_dict)
 
     # JSONL Filenames
-    overall_score_summary_jsonl_filename = f"./dataset_files/clubbed/{dir_name}/overall_score_summary.jsonl"
-    communication_score_summary_jsonl_filename = f"./dataset_files/clubbed/{dir_name}/communication_score_summary.jsonl"
-    tips_errors_summary_jsonl_filename = f"./dataset_files/clubbed/{dir_name}/tips_errors.jsonl"
+    overall_score_summary_jsonl_filename = f"./dataset/clubbed/{dir_name}/overall_score_summary.jsonl"
+    communication_score_summary_jsonl_filename = f"./dataset/clubbed/{dir_name}/communication_score_summary.jsonl"
+    tips_errors_summary_jsonl_filename = f"./dataset/clubbed/{dir_name}/tips_errors.jsonl"
     # Creating JSONL Files
     create_jsonl_file(overall_score_summary_file, overall_score_summary_jsonl_filename)
     create_jsonl_file(communication_score_summary_file, communication_score_summary_jsonl_filename)
@@ -113,11 +113,11 @@ def generate_training_singleton(case_studies_id: list, session: Session, summary
             # tips_errors_file.append(tips_errors_dict)
 
     '''JSONL Filenames'''
-    overall_score_jsonl_filename = f"./dataset_files/singleton/{dir_name}/overall_score_v2_sample_grid.jsonl"
-    # overall_summary_jsonl_filename = f"./dataset_files/singleton/{dir_name}/overall_summary.jsonl"
-    communication_score_jsonl_filename = f"./dataset_files/singleton/{dir_name}/communication_score_v2_sample_grid.jsonl"
-    # communication_summary_jsonl_filename = f"./dataset_files/singleton/{dir_name}/communication_summary.jsonl"
-    # tips_errors_summary_jsonl_filename = f"./dataset_files/singleton/{dir_name}/tips_errors.jsonl"
+    overall_score_jsonl_filename = f"./dataset/singleton/{dir_name}/overall_score_v2_sample_grid.jsonl"
+    # overall_summary_jsonl_filename = f"./dataset/singleton/{dir_name}/overall_summary.jsonl"
+    communication_score_jsonl_filename = f"./dataset/singleton/{dir_name}/communication_score_v2_sample_grid.jsonl"
+    # communication_summary_jsonl_filename = f"./dataset/singleton/{dir_name}/communication_summary.jsonl"
+    # tips_errors_summary_jsonl_filename = f"./dataset/singleton/{dir_name}/tips_errors.jsonl"
     '''Creating JSONL Files'''
     create_jsonl_file(overall_score_file, overall_score_jsonl_filename)
     # create_jsonl_file(overall_summary_file, overall_summary_jsonl_filename)
@@ -186,5 +186,5 @@ def train_validation_split(evaluation_studies_id: list, session: Session) -> Non
     train_df = pd.DataFrame(train_df, columns=columns)
     test_df = pd.DataFrame(test_df, columns=columns)
 
-    train_df.to_csv("./dataset_files/train.csv", index=False)
-    test_df.to_csv("./dataset_files/test.csv", index=False)
+    train_df.to_csv("./dataset/train_split.csv", index=False)
+    test_df.to_csv("./dataset/test_split.csv", index=False)

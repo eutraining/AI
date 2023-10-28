@@ -1,18 +1,18 @@
 import argparse
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from openai_training.training_file import *
+from training.openai_training.training_file import *
 from database.schema import CaseStudy, CaseStudyEvaluation
-from openai_training.finetune import generate_finetune, babbage_finetune, create_babbage_dataset, create_gpt_dataset, gpt_finetune_train
-from chatgpt_api.config import settings
+from training.openai_training.finetune import generate_finetune, babbage_finetune, create_babbage_dataset, create_gpt_dataset, gpt_finetune_train
+from config import settings
 
 
-def assign_summary(args) -> bool:
-    if args.input_path == "YES":
-        summary_var = True
+def assign_summary(arguments: argparse.Namespace) -> bool:
+    if arguments.input_path == "YES":
+        summary = True
     else:
-        summary_var = False
-    return summary_var
+        summary = False
+    return summary
 
 
 if __name__ == "__main__":

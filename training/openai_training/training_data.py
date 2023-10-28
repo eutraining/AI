@@ -1,5 +1,5 @@
 import json
-from chatgpt_api.config import settings
+from config import settings
 
 
 def create_evaluation_sample(name: str, instructions: str, abbreviations: str,

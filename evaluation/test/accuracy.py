@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import os
 import re
-from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
+from sklearn.metrics import mean_squared_error, mean_absolute_error
 
 
 def find_actual_score(pattern: str, text: str) -> float:
@@ -63,23 +63,16 @@ def get_accuracy(df_path: str, actual_pattern: str, predicted_pattern_1: str, pr
     mse = mean_squared_error(actual_list, predicted_list)
     rmse = mean_squared_error(actual_list, predicted_list, squared=False)
     """"""
-    # r_squared = round(r2_score(actual_list, predicted_list), 2)
-    """"""
     avg_token = round(tokens / total, 2)
     return [approach, mae, mse, rmse, avg_token]
 
 
-if __name__ == "__main__":
+def accuracy_csv(base_path: str, output_path: str) -> None:
+    path_csv = os.listdir(base_path)
     actual_score_pattern = r"(\d+\.\d+)"
     predicted_score_pattern_1 = r"(\d+\.\d+)"
     predicted_score_pattern_2 = r"(\d+\.|\d+)"
-
-    base_path = "../predicted_files/singleton/summary/"
-    path_csv = os.listdir(base_path)
-
     accuracy_df = []
-    output_path = "../test/accuracy_score.csv"
-
     for path in path_csv:
         csv_path = base_path + path
         if path.find("communication_score") != -1:
@@ -91,3 +84,4 @@ if __name__ == "__main__":
 
     dataframe = pd.DataFrame(accuracy_df, columns=["Approach", "MAE Loss", "MSE Loss", "RMSE Loss", "Average Token"])
     dataframe.to_csv(output_path, index=False)
+
