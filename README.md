@@ -108,7 +108,7 @@ python3 -m openai_training.main gpt-finetune -i overall/communication
 
 ---
 
-### Evaluation / Validation / Accuracy 
+### Evaluation / Validation / Test 
 1. Evaluate the dataset using Clubbed Method with Summary inclusion parameter.
 ```bash
 python3 -m evaluation.main clubbed -i YES/NO
@@ -131,7 +131,12 @@ python3 -m evaluation.main gpt-score -i YES/NO
 
 5. Accuracy check for evaluation CSV files of OVERALL and COMMUNICATION SCORES.
 ```bash
-python3 -m evaluation.main accuracy
+python3 -m evaluation.main accuracy -i /path/to/evaluated/csv/results/ -o /output/path/accuracy/csv
+```
+
+6. Testing results converted into CSV as well as DOCX format for Client's Review.
+```bash
+python3 -m evaluation.main csv-output/docx-output -o /output/path/files/
 ```
 
 

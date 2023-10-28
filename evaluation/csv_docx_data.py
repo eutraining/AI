@@ -44,7 +44,7 @@ class Evaluation:
                                               "Actual Tips/Errors", "Predicted Tips/Errors", "Trainee's Answer"])
         evaluation_df.to_csv(path, index=False)
 
-    def create_docx(self, session: Session) -> None:
+    def create_docx(self, output_path: str, session: Session) -> None:
         for ind, row in self.df.iterrows():
             doc = Document()
             eval_id = row["Evaluation ID"]
@@ -82,7 +82,7 @@ class Evaluation:
             doc.add_heading("\nPredicted Tips/Errors\n", 1)
             doc.add_paragraph(communication_tips_errors_filter[1])
 
-            doc.save(f'./ai_evaluation/evaluation_docx/evaluation_{eval_id}.docx')
+            doc.save(f'{output_path}/evaluation_{eval_id}.docx')
 
 
 evaluation_csv_docx = Evaluation()

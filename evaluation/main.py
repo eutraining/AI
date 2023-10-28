@@ -3,7 +3,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from evaluation.evaluation import *
 from database.schema import CaseStudy
-from evaluation.test.accuracy import accuracy_csv
+from evaluation.accuracy import accuracy_csv
+from evaluation.csv_docx_data import evaluation_csv_docx
 
 
 def assign_summary(arguments: argparse.Namespace) -> bool:
@@ -20,6 +21,7 @@ if __name__ == "__main__":
     # Add common command-line arguments
     parser.add_argument("command", help="The command to execute (extract or update)")
     parser.add_argument("-i", "--input_path", help="Method")
+    parser.add_argument("-o", "--output_path", help="Method")
     # Parse the command-line arguments
     args = parser.parse_args()
 
@@ -43,7 +45,14 @@ if __name__ == "__main__":
         summary_var = assign_summary(args)
         gpt_score(case_studies_id, session, summary_var)
     elif args.command == "accuracy":
-        base_path = "../training/results/singleton/summary/"
-        output_path = "./evaluation/test/accuracy_score.csv"
+        base_path = args.input_path
+        output_path = args.output_path
         accuracy_csv(base_path, output_path)
+    elif args.command == "csv-output":
+        output_path = args.output_path
+        evaluation_csv_docx.create_evaluation_csv(output_path, session)
+    elif args.command == "docx-output":
+        output_path = args.output_path
+        evaluation_csv_docx.create_docx(output_path, session)
+
     session.close()
