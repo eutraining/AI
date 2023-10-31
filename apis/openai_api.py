@@ -6,13 +6,17 @@ def call_gpt35_turbo(system_message: str, prompt: str, model="gpt-3.5-turbo-16k"
     """Calls OpenAI GPT3.5 turbo API with the specified system message and prompt"""
     result = ""
     tries = 0
+    if model == "gpt-3.5-turbo-16k":
+        temperature = settings.TEMPERATURE
+    else:
+        temperature = 0.0
     while not result and tries < settings.API_TRIES:
         try:
             openai.api_key = settings.OPENAI_API_KEY
             response = openai.ChatCompletion.create(
                 # model="gpt-3.5-turbo",
                 model=model,
-                temperature=0.0,
+                temperature=temperature,
                 timeout=settings.TIMEOUT,
                 request_timeout=settings.REQUEST_TIMEOUT,
                 messages=[
@@ -38,7 +42,7 @@ def call_gpt3_davinci(system_message: str, prompt: str) -> str:
             response = openai.Completion.create(
                 model="text-davinci-003",
                 prompt=prompt,
-                temperature=0.0,
+                temperature=settings.TEMPERATURE,
                 timeout=settings.TIMEOUT,
                 request_timeout=settings.REQUEST_TIMEOUT,
                 max_tokens=1000,
@@ -62,7 +66,7 @@ def call_gpt4(system_message: str, prompt: str) -> str:
             openai.api_key = settings.OPENAI_API_KEY
             response = openai.ChatCompletion.create(
                 model="gpt-4",
-                temperature=0.0,
+                temperature=settings.TEMPERATURE,
                 timeout=settings.TIMEOUT,
                 request_timeout=settings.REQUEST_TIMEOUT,
                 messages=[
@@ -99,7 +103,7 @@ def call_babbage_score(model: str, prompt: str):
             response = openai.Completion.create(
                 model=model,
                 prompt=prompt,
-                temperature=0.0,
+                temperature=settings.TEMPERATURE,
             )
             # Get the generated text
             result = response["choices"][0]["text"]

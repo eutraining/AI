@@ -6,13 +6,13 @@ from docx import Document
 
 class Evaluation:
     def __init__(self):
-        self.df = pd.read_csv("./dataset/test_split.csv")
-        self.overall_score = pd.read_csv("./training/results/singleton/summary/overall_score_gpt3.5_sample_15.csv")
+        self.df = pd.read_csv("./training/dataset/test_split.csv")
+        self.overall_score = pd.read_csv("./training/results/singleton/summary/overall_score_1031_v3.csv")
         self.communication_score = pd.read_csv(
-            "./training/results/singleton/summary/communication_score_gpt3.5_sample_15.csv")
-        self.overall_summary = pd.read_csv("./training/results/singleton/summary/overall_summary_v2.csv")
-        self.communication_summary = pd.read_csv("./training/results/singleton/summary/communication_summary_v2.csv")
-        self.tips_errors = pd.read_csv("./training/results/singleton/summary/tips_errors_v2.csv")
+            "./training/results/singleton/summary/communication_score_1031_v3.csv")
+        self.overall_summary = pd.read_csv("./training/results/singleton/summary/overall_summary_1031_v3.csv")
+        self.communication_summary = pd.read_csv("./training/results/singleton/summary/communication_summary_1031_v3.csv")
+        self.tips_errors = pd.read_csv("./training/results/singleton/summary/tips_errors_1031_v3.csv")
 
     @staticmethod
     def extract_values(df: pd.DataFrame) -> tuple:

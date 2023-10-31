@@ -6,6 +6,7 @@ class Settings:
     API_TRIES = 3
     API_BACKOFF = 2
     # OpenAI Environment Variables
+    TEMPERATURE = 0.7
     TIMEOUT = 90
     REQUEST_TIMEOUT = 180
     OPENAI_API_KEY = " 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"

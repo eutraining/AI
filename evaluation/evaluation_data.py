@@ -25,13 +25,13 @@ def create_score_evaluation_data(name: str, instructions: str, abbreviations: st
 
 
 def create_overall_content(overall_summary: str, overall_score: float) -> str:
-    data = f"Overall Score (out-off 10): {overall_score}\n\n" \
+    data = f"Overall Score (out of 10): {overall_score}\n\n" \
            f"Overall Summary: \n{overall_summary}\n"
     return data
 
 
 def create_communication_content(communication_summary: str, communication_score: float) -> str:
-    data = f"Communication Score(out-off 10): {communication_score}\n\n" \
+    data = f"Communication Score(out of 10): {communication_score}\n\n" \
            f"Communication Summary: \n{communication_summary}\n"
     return data
 

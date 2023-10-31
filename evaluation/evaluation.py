@@ -82,7 +82,7 @@ def generate_evaluation_clubbed(case_studies_id: list, session: Session, summary
 
 
 def generate_evaluation_singleton(case_studies_id: list, session: Session, summary_var: bool) -> None:
-    # JSONL Files list
+    # CSV Files list
     overall_score_file = [["ID", "Actual", "Predicted", "Input Token Count", "Output Token Count"]]
     overall_summary_file = [["ID", "Actual", "Predicted", "Input Token Count", "Output Token Count"]]
     communication_score_file = [["ID", "Actual", "Predicted", "Input Token Count", "Output Token Count"]]
@@ -91,9 +91,14 @@ def generate_evaluation_singleton(case_studies_id: list, session: Session, summa
 
     dir_name = "non_summary"
 
+    df = pd.read_csv("./training/dataset/test_split.csv")
+    evaluation_ids = []
+    for ind, row in df.iterrows():
+        evaluation_ids.append(row["Evaluation ID"])
+
     for cs_id in case_studies_id:
         name, instructions, abbreviations, email_instructions, context = fetch_case_study(cs_id, session)
-        score_grid, sample_solution = fetch_review_guide(cs_id, session)
+        _, sample_solution = fetch_review_guide(cs_id, session)
         print(f"Case Study ID: {cs_id}")
         ''' Case Study Summary'''
         if summary_var:
@@ -105,11 +110,15 @@ def generate_evaluation_singleton(case_studies_id: list, session: Session, summa
         for record in evaluations_records:
             eval_id, overall_score, overall_summary, communication_score, communication_summary, communication_errors, \
                 communication_tips, trainee_answer = record
+            if eval_id not in evaluation_ids:
+                continue
             print(f"Evaluation ID: {eval_id}")
             # Create Evaluation Sample and Other Data
             sample_evaluation_data = create_evaluation_sample(name, instructions, abbreviations,
                                                               email_instructions, context, trainee_answer,
                                                               sample_solution)
+            sample_score_data = create_score_evaluation_data(name, instructions, abbreviations,
+                                                             email_instructions, context, trainee_answer)
             # Actual Data Fetching
             overall_score_content = create_score_content("Overall", overall_score)
             overall_summary_content = create_summary_content("Overall", overall_summary)
@@ -126,7 +135,7 @@ def generate_evaluation_singleton(case_studies_id: list, session: Session, summa
             #                                              "Communication")
             # communication_score_evaluation = add_grid(score_grid, communication_score_evaluation)
             communication_score_content = call_gpt_api(settings.COMMUNICATION_SCORE_MESSAGE,
-                                                       sample_evaluation_data,
+                                                       sample_score_data,
                                                        model="ft:gpt-3.5-turbo-0613:eu-training::8DpWReUf")
             print(f"Communication Score : \n{communication_score_content}\n\n")
             '''OVERALL SUMMARY'''
@@ -136,7 +145,7 @@ def generate_evaluation_singleton(case_studies_id: list, session: Session, summa
             '''OVERALL SCORE'''
             # score_evaluation = add_summary(summary_evaluation, summary_content, "Overall")
 
-            score_content = call_gpt_api(settings.OVERALL_SCORE_MESSAGE, sample_evaluation_data,
+            score_content = call_gpt_api(settings.OVERALL_SCORE_MESSAGE, sample_score_data,
                                          model="ft:gpt-3.5-turbo-0613:eu-training::8Dp8J3iS")
             print(f"Score : \n{score_content}\n\n")
             '''TIPS ERRORS'''
@@ -174,11 +183,11 @@ def generate_evaluation_singleton(case_studies_id: list, session: Session, summa
                                      tips_errors_output_token])
 
     # CSV Filenames
-    overall_score_csv_filename = f"./training/results/singleton/{dir_name}/overall_score_v2.csv"
-    overall_summary_csv_filename = f"./training/results/singleton/{dir_name}/overall_summary_v2.csv"
-    communication_score_csv_filename = f"./training/results/singleton/{dir_name}/communication_score_v2.csv"
-    communication_summary_csv_filename = f"./training/results/singleton/{dir_name}/communication_summary_v2.csv"
-    tips_errors_summary_csv_filename = f"./training/results/singleton/{dir_name}/tips_errors_v2.csv"
+    overall_score_csv_filename = f"./training/results/singleton/{dir_name}/overall_score_1031_v3.csv"
+    overall_summary_csv_filename = f"./training/results/singleton/{dir_name}/overall_summary_1031_v3.csv"
+    communication_score_csv_filename = f"./training/results/singleton/{dir_name}/communication_score_1031_v3.csv"
+    communication_summary_csv_filename = f"./training/results/singleton/{dir_name}/communication_summary_1031_v3.csv"
+    tips_errors_summary_csv_filename = f"./training/results/singleton/{dir_name}/tips_errors_1031_v3.csv"
 
     # Creating CSV Files
     create_csv_file(overall_score_file, overall_score_csv_filename)

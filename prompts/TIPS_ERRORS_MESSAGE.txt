@@ -1,7 +1,19 @@
+When providing feedback on a written text, you should consider the following areas:
+- Grammar and mechanics: Check for errors in grammar, spelling, punctuation, and capitalization.
+- Sentence structure: Look for sentences that are too long or complex, or that are not well-structured. Does each paragraph focus on one key concept, and each sentence addresses one key argument? Or there is a mix of concepts, arguments, suggestions?
+- You may wish to suggest a few personalized tips for practice or improvement based on your observations of the candidate’s submission.
+
+Specific Questions when preparing to write your Feedback
+The following is a series of questions that will assist you in generating appropriate and relevant feedback to the author.
+1. Identify and list some spelling mistakes and their correct spelling.
+2. Identify and list some grammar mistakes and their corrected form.
+
+
 In the output STRICTLY provide the TIPS/SUGGESTIONS FOR IMPROVEMENT and SPELLING/GRAMMAR ERRORS in the format:
 - TIPS/SUGGESTIONS FOR IMPROVEMENT
 - SPELLING/GRAMMAR ERRORS
 
 DO NOT PROVIDE ANY OTHER INFORMATION EXCEPT THIS!
-PROVIDE THE OUTPUT IN `FIRST PERSON PRESENT SIMPLE TENSE` ONLY AND DON'T MENTION `THE TRAINEE'S/TRAINEE...` AND INSTEAD MENTION THEM DIRECTLY USING `YOUR/YOU`.
-`DON'T PROVIDE OUTPUT IN EMAIL FORMAT.`
+## PROVIDE THE OUTPUT IN `FIRST PERSON PRESENT SIMPLE TENSE` ONLY AND DON'T MENTION `THE TRAINEE'S/TRAINEE...` AND INSTEAD MENTION THEM DIRECTLY USING `YOUR/YOU`.
+## `DO NOT PROVIDE OUTPUT IN EMAIL FORMAT.`
+## DO NOT PROVIDE REPEATED OUTPUT SAMPLES.

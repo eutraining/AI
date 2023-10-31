@@ -1,20 +1,32 @@
-Under the KEY OBSERVATIONS section, provide detailed feedback like:
-    - The writing style of the candidate is…
-    - The clarity and tone of the text is…
-    - The structure of the text is….
-    - The key message of the text is…
-    - The logic and flow of the text is…
-    - The language of the text is…
+The following is a series of questions that will assist you in generating appropriate and relevant feedback to the author.
+1. Is there a central message that is consistent and well-communicated throughout?
+2. Is the language used concise, jargon-free, and uncomplicated (no unnecessary abbreviations)?
+3. Is there any contradiction between the various parts of the text or arguments?
+4. Does the content have a logical flow?
+5. Is the layout clear and visually pleasing?
+6. What is the document type and is its layout appropriate?
+7. What is the tone of the document and is it appropriate to the audience?
+
+
+
 
 Under the COMMUNICATION_SUMMARY section:
-    - Always start the summary with the following text:  "According to the Notice of Competitions of current EPSO competitions, the only competency that will be assessed in the Case Study exam is Written Communication. Therefore, only this competency was assessed in your evaluation." 
-    - Then as part of the summary provide a brief reviewed text. This helps the candidate understand that you have read and understood their submission.
-    - Make sure your summary includes a few top-level suggestions for improvements. This helps alert the candidate to the more detailed comments that should follow.
-    - Separate the different feedback sections. This assists the candidate in identifying them and assists in understanding them:
-        1. The strong point of your text were the following:
-        2. Where I suggest improvement is …., …. and …..
-        3. The quality, relevance, conciseness of your arguments was…
-    - You may wish to suggest a few personalized tips for practice or improvement based on your observations of the candidate’s submission.
+- Always start the summary with the following text:  "According to the Notice of Competitions of current EPSO competitions, the only competency that will be assessed in the Case Study exam is Written Communication. Therefore, only this competency was assessed in your evaluation."
+- Then as part of the summary provide a brief reviewed text. This helps the candidate understand that you have read and understood their submission.
+- Make sure your summary includes a few top-level suggestions for improvements. This helps alert the candidate to the more detailed comments that should follow.
+- Separate the different feedback sections. This assists the candidate in identifying them and assists in understanding them:
+    1. Clarity: Is the text easy to read? Does it have a logical flow? Is it visually pleasing to the reader?
+    2. Organization: Consider whether the text is well-organized and easy to follow. In the ‘new’ format of case studies, there isn’t always a need for introduction/body/conclusion, but some context needs to be given, key recommendations or points for or against a certain position, with proper background information, facts and references, along with logically sequenced arguments. Does the writing follow a ‘red thread’ or does it go all over the place? Does the brief require specific recommendations? If so these should be in a separate titled section.
+    3. Style: What is the intended audience? (European Commission head of unit, general-public, journalists, subject matter experts, others?) Is the writing style appropriate for that audience? Is its tone formal or informal? Is it concise and jargon-free (or is the jargon defined)? Does the author inappropriately assume a reader's prior knowledge of the issue? Is there any bias evident?
+- Ensure it is COMPREHENSIVE, OBJECTIVE, RESPECTFUL, and PROFESSIONAL.
+
+
+## PROVIDE THE OUTPUT IN PRESENT SIMPLE TENSE ONLY AND DON'T MENTION DIRECTLY USING `THE TRAINEE ...`.
+## `DON'T PROVIDE OUTPUT IN EMAIL FORMAT.`
+## USE THE SAMPLE SOLUTION FOR REFERENCING WITH THE TEST EVALUATION OF THE TRAINEE'S ANSWER AND PROVIDE OUTPUT RESULTS ACCORDINGLY.
+## AVOID GENERAL STATEMENTS LIKE "provide more specific examples or evidence", "provide specific evidence", "more specific" or "use more specific examples" AND DO NOT REPEAT THEM IN THE FEEDBACK MULTIPLE TIMES.
+## DIVERSIFY YOUR TEXT WITH AN ARRAY OF SYNONYMS AND ENGAGING VOCABULARY, PROMOTING CREATIVE LANGUAGE EXPLORATION OVER REPETITIVE PHRASING.
+## ALSO DON'T CONTRADICT YOUR OWN FEEDBACK BY STATING ONE THING AND THEN SAYING THE OPPOSITE OF THAT IN THE SAME FEEDBACK!
+## DO NOT PROVIDE REPEATED GENERAL STATEMENTS.
 
 DO NOT PROVIDE ANY OTHER INFORMATION EXCEPT THIS!
-PROVIDE THE OUTPUT IN PRESENT SIMPLE TENSE ONLY AND DON'T MENTION DIRECTLY USING `THE TRAINEE ...`.

@@ -15,8 +15,11 @@ def add_grid(score_grid: str, sample_evaluation_data: str) -> str:
 
 def generate_summary(instructions: str, email: str, content: str) -> tuple:
     instructions = call_gpt_api(settings.SUMMARY_MESSAGE, instructions)
+    print("Instructions summary done!")
     email = call_gpt_api(settings.SUMMARY_MESSAGE, email)
+    print("Email summary done!")
     content = call_gpt_api(settings.SUMMARY_MESSAGE, content)
+    print("Content summary done!")
     return instructions, email, content
 
 
