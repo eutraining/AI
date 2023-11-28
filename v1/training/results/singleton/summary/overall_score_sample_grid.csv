@@ -1,0 +1,104 @@
+ID,Actual,Predicted,Input Token Count,Output Token Count
+1,"Overall Score (out-off 10): 7.0
+
+",SCORE (6/10),8994,6
+2,"Overall Score (out-off 10): 6.8
+
+",SCORE (8/10),8560,6
+3,"Overall Score (out-off 10): 4.0
+
+",SCORE (4/10),7993,6
+4,"Overall Score (out-off 10): 5.5
+
+",SCORE (4/10),8122,6
+5,"Overall Score (out-off 10): 5.0
+
+",SCORE (7/10),9305,6
+6,"Overall Score (out-off 10): 4.0
+
+",SCORE (8/10),9334,6
+7,"Overall Score (out-off 10): 7.0
+
+",SCORE (7/10),8227,6
+8,"Overall Score (out-off 10): 7.0
+
+",SCORE (8/10),9974,6
+9,"Overall Score (out-off 10): 7.8
+
+",SCORE (4/10),9922,6
+10,"Overall Score (out-off 10): 5.0
+
+",7/10,9315,3
+11,"Overall Score (out-off 10): 7.0
+
+",SCORE (6/10),10162,6
+12,"Overall Score (out-off 10): 6.0
+
+",SCORE (8/10),10429,6
+13,"Overall Score (out-off 10): 5.0
+
+",SCORE (6/10),8626,6
+14,"Overall Score (out-off 10): 6.8
+
+",SCORE (6/10),9594,6
+15,"Overall Score (out-off 10): 8.8
+
+",SCORE (8/10),10298,6
+16,"Overall Score (out-off 10): 8.0
+
+",SCORE (7/10),8603,6
+17,"Overall Score (out-off 10): 7.0
+
+",SCORE (6/10),8346,6
+18,"Overall Score (out-off 10): 7.0
+
+",SCORE (6/10),10474,6
+19,"Overall Score (out-off 10): 8.0
+
+",SCORE (8/10),8836,6
+20,"Overall Score (out-off 10): 7.0
+
+",SCORE (8/10),8438,6
+21,"Overall Score (out-off 10): 6.0
+
+",SCORE (6/10),7979,6
+22,"Overall Score (out-off 10): 6.0
+
+",SCORE: 7/10,8697,6
+23,"Overall Score (out-off 10): 4.0
+
+",SCORE (7/10),9212,6
+24,"Overall Score (out-off 10): 3.0
+
+",SCORE (6/10),9592,6
+25,"Overall Score (out-off 10): 5.0
+
+",SCORE (7/10),7970,6
+26,"Overall Score (out-off 10): 6.0
+
+","The trainee's answer lacks clarity, structure, and logical flow. The writing style is unclear and does not effectively communicate the main arguments and reasoning behind the proposed regulation. The trainee does not provide convincing arguments or consider different perspectives. The language used is not concise and jargon-free. 
+
+The trainee should work on improving the clarity, structure, and logic of their writing. They should also focus on tailoring the message to the needs of the audience and providing convincing arguments and solid reasoning.
+
+Overall Score: 3/10",6618,107
+27,"Overall Score (out-off 10): 6.0
+
+",SCORE (4/10),8868,6
+28,"Overall Score (out-off 10): 6.0
+
+",SCORE (7/10),9050,6
+29,"Overall Score (out-off 10): 7.3
+
+",SCORE (7/10),11136,6
+30,"Overall Score (out-off 10): 7.5
+
+",SCORE (7/10),10754,6
+31,"Overall Score (out-off 10): 6.0
+
+",SCORE (4/10),10510,6
+32,"Overall Score (out-off 10): 7.0
+
+",SCORE (4/10),9135,6
+33,"Overall Score (out-off 10): 7.0
+
+",SCORE (7/10),10500,6

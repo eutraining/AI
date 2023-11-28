@@ -1,0 +1,100 @@
+ID,Actual,Predicted,Input Token Count,Output Token Count
+1,"Communication Score (out-off 10): 7.0
+
+",SCORE (6/10),5111,6
+2,"Communication Score (out-off 10): 7.0
+
+",SCORE (8/10),4866,6
+3,"Communication Score (out-off 10): 3.0
+
+",SCORE (4/10),4697,6
+4,"Communication Score (out-off 10): 3.0
+
+",SCORE (4/10),4850,6
+5,"Communication Score (out-off 10): 5.0
+
+",SCORE (7/10),5314,6
+6,"Communication Score (out-off 10): 4.0
+
+",SCORE (8/10),5266,6
+7,"Communication Score (out-off 10): 7.0
+
+",SCORE (7/10),4885,6
+8,"Communication Score (out-off 10): 7.0
+
+",SCORE (8/10),5654,6
+9,"Communication Score (out-off 10): 7.0
+
+",SCORE (4/10),5777,6
+10,"Communication Score (out-off 10): 5.0
+
+",SCORE: 7/10,5471,6
+11,"Communication Score (out-off 10): 10.0
+
+",SCORE (6/10),5887,6
+12,"Communication Score (out-off 10): 6.0
+
+",SCORE (8/10),5902,6
+13,"Communication Score (out-off 10): 5.0
+
+",SCORE (6/10),5109,6
+14,"Communication Score (out-off 10): 5.0
+
+",SCORE (6/10),5532,6
+15,"Communication Score (out-off 10): 9.0
+
+",SCORE (8/10),5965,6
+16,"Communication Score (out-off 10): 8.0
+
+",SCORE (7/10),5004,6
+17,"Communication Score (out-off 10): 7.0
+
+",SCORE (6/10),4938,6
+18,"Communication Score (out-off 10): 7.0
+
+",SCORE (6/10),5859,6
+19,"Communication Score (out-off 10): 8.0
+
+",SCORE (8/10),5138,6
+20,"Communication Score (out-off 10): 7.0
+
+",SCORE (8/10),5007,6
+21,"Communication Score (out-off 10): 6.0
+
+",SCORE (6/10),4896,6
+22,"Communication Score (out-off 10): 6.0
+
+",COMMUNICATION_SCORE: 7/10,5096,8
+23,"Communication Score (out-off 10): 4.0
+
+",SCORE (7/10),5149,6
+24,"Communication Score (out-off 10): 3.0
+
+",SCORE (6/10),5296,6
+25,"Communication Score (out-off 10): 5.0
+
+",SCORE (7/10),4702,6
+26,"Communication Score (out-off 10): 6.0
+
+",SCORE (3/10),4217,6
+27,"Communication Score (out-off 10): 6.0
+
+",SCORE (4/10),5171,6
+28,"Communication Score (out-off 10): 6.0
+
+",SCORE (7/10),5352,6
+29,"Communication Score (out-off 10): 7.0
+
+",SCORE (7/10),6350,6
+30,"Communication Score (out-off 10): 5.0
+
+",SCORE (7/10),6068,6
+31,"Communication Score (out-off 10): 6.0
+
+",SCORE (4/10),5929,6
+32,"Communication Score (out-off 10): 7.0
+
+",SCORE (4/10),5293,6
+33,"Communication Score (out-off 10): 7.0
+
+",SCORE (7/10),6012,6
