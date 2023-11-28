@@ -46,20 +46,20 @@ def add_evaluation_info(case_study_id: int, overall_score: float, summary: str, 
         session.rollback()
 
 
-# Function for creating Review Guide Record
-def add_review_guide(case_study_id: int, recommendations: str, score_grid: str, session: Session) -> None:
-    try:
-        review_guide_create = ReviewGuide(
-            case_study_id=case_study_id,
-            recommendations=recommendations,
-            score_grid=score_grid
-        )
-        session.add(review_guide_create)
-        session.commit()
-        print("Data added to the Review Guide successfully.")
-    except Exception as e:
-        print(f"An error occurred: {str(e)}")
-        session.rollback()
+# # Function for creating Review Guide Record
+# def add_review_guide(case_study_id: int, recommendations: str, score_grid: str, session: Session) -> None:
+#     try:
+#         review_guide_create = ReviewGuide(
+#             case_study_id=case_study_id,
+#             recommendations=recommendations,
+#             score_grid=score_grid
+#         )
+#         session.add(review_guide_create)
+#         session.commit()
+#         print("Data added to the Review Guide successfully.")
+#     except Exception as e:
+#         print(f"An error occurred: {str(e)}")
+#         session.rollback()
 
 
 def add_extracted_info_database(base_path: str, session: Session) -> None:
@@ -87,7 +87,7 @@ def add_extracted_info_database(base_path: str, session: Session) -> None:
         print(review_guide)
         score_grid, recommendations_solution = review_guide_extract(review_guide_info)
         ''''''
-        add_review_guide(case_study_id, recommendations_solution, score_grid, session)
+        #add_review_guide(case_study_id, recommendations_solution, score_grid, session)
         ''''''
         # CASE STUDY EVALUATION AND TRAINEE'S ANSWER
         for i in range(0, len(case_study_files[2:]), 2):

@@ -10,20 +10,22 @@ class Settings:
     TIMEOUT = 90
     REQUEST_TIMEOUT = 180
     OPENAI_API_KEY = " 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"
-    GPT_MODEL = "gpt3.5"
+    GPT_MODEL = "gpt4"
     # Fine-Tuning Variables
     N_EPOCHS = 15
+
     # Prompt Messages
-    BASE_MESSAGE = fetch_prompt_message("prompts/BASE_MESSAGE.txt")
-    OVERALL_SCORE_SUMMARY_MESSAGE = BASE_MESSAGE + fetch_prompt_message("prompts/OVERALL_SCORE_SUMMARY_MESSAGE.txt")
-    COMMUNICATION_SCORE_SUMMARY_MESSAGE = BASE_MESSAGE + fetch_prompt_message(
-        "prompts/COMMUNICATION_SCORE_SUMMARY_MESSAGE.txt")
-    TIPS_ERRORS_MESSAGE = BASE_MESSAGE + fetch_prompt_message("prompts/TIPS_ERRORS_MESSAGE.txt")
-    OVERALL_SCORE_MESSAGE = BASE_MESSAGE + fetch_prompt_message("prompts/OVERALL_SCORE_MESSAGE.txt")
-    OVERALL_SUMMARY_MESSAGE = BASE_MESSAGE + fetch_prompt_message("prompts/OVERALL_SUMMARY_MESSAGE.txt")
-    COMMUNICATION_SCORE_MESSAGE = BASE_MESSAGE + fetch_prompt_message("prompts/COMMUNICATION_SCORE_MESSAGE.txt")
-    COMMUNICATION_SUMMARY_MESSAGE = BASE_MESSAGE + fetch_prompt_message("prompts/COMMUNICATION_SUMMARY_MESSAGE.txt")
-    SUMMARY_MESSAGE = fetch_prompt_message("prompts/SUMMARY_MESSAGE.txt")
+    GENERAL_TEMPLATE_PATH = "prompts/GENERAL_TEMPLATE.txt"
+    SYSTEM_MESSAGES_PATH = "prompts/SYSTEM_MESSAGE.txt"
+    GENERAL_MESSAGE_PATH = "prompts/GENERAL_MESSAGE.txt"
+    EVALUATION_STRUCTURE_PATH = "prompts/EVALUATION_STRUCTURE.txt"
+    EXAM_INFO_PATH = "prompts/EXAM_INFO.txt"
+    GRAMMAR_GUIDELINE_PATH = "prompts/GRAMMAR_GUIDELINE.txt"
+    OBSERVATIONS_GUIDELLINE_PATH = "prompts/OBSERVATIONS_GUIDELLINE.txt"
+    TIPS_GUIDELINE_PATH = "prompts/TIPS_GUIDELINE.txt"
+    TASK_PATH = "prompts/TASK.txt"
+    WORKFLOW_PATH = "prompts/WORKFLOW.txt"
+
     # DB Variables
     DB_PATH = "sqlite:///eutraining.db"
 

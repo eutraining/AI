@@ -32,6 +32,7 @@ class ReviewGuide(Base):
 
 
 # Define the CaseStudyEvaluation class to map to the 'case_study_evaluation' table.
+#TODO Change the structure
 class CaseStudyEvaluation(Base):
     __tablename__ = 'case_study_evaluation'
 
