@@ -1,4 +1,7 @@
-from apis.gpt_api import call_gpt_api
+from apis.openai_api import call_gpt_api
+from models.models import CommunicationsExamInfo
+from utils import fetch_prompt_message
+
 import openai
 
 def generate_section_gpt(
@@ -61,6 +64,39 @@ def generate_summary_gpt(evaluation_text: str) -> str:
     prompt = SUMMARY
     prompt = prompt.replace("{evaluation_text}", evaluation_text)
 
-    summary_text = call_gpt_api(prompt)
+    summary_text = call_gpt_api("You are a great summarizer. You can summarize long text keeping the main idea and don't miss any essential information", prompt)
 
     return summary_text
+
+
+def generate_candidate_task_gpt(evaluation_text: str) -> str:
+    """Generates the summary text"""
+
+    CANDIDATE_TASK_PATH: str = fetch_prompt_message(settings.CANDIDATE_TASK_PATH)
+
+    prompt = CANDIDATE_TASK_PATH
+    prompt = prompt.replace("{evaluation_text}", evaluation_text)
+
+    summary_text = call_gpt_api("You are a great finding out the objective task behind various instructions", prompt)
+
+    return summary_text
+
+def extract_point_of_views_gpt(evaluation_text: str) -> str:
+    VIEWS: str = fetch_prompt_message(settings.VIEWS_PATH)
+
+    prompt = VIEWS
+    prompt = prompt.replace("{evaluation_text}", evaluation_text)
+
+    views = call_gpt_api("You are a model, capable of distinge different point of views about the same topic", prompt)
+
+    return views
+
+def extract_target_audience_gpt(evaluation_text: str) -> str:
+    TARGET_AUDIENCE: str = fetch_prompt_message(settings.TARGET_AUDIENCE_PATH)
+
+    prompt = TARGET_AUDIENCE
+    prompt = prompt.replace("{evaluation_text}", evaluation_text)
+
+    audience = call_gpt_api("You are a very intelligent model", prompt)
+
+    return audience

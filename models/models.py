@@ -1,4 +1,4 @@
-from app.schemas.base import Base
+from models.base import Base
 
 # class that represent relevant info of an exam case
 class CommunicationsExamInfo(Base):

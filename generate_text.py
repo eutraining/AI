@@ -1,4 +1,9 @@
 from gpt_calls import generate_section_gpt, generate_summary_gpt
+from models.models import CommunicationsExamInfo
+from utils import read_docx, case_study_extract, fetch_prompt_message
+from gpt_calls import generate_candidate_task_gpt, extract_point_of_views_gpt, extract_target_audience_gpt
+
+from enum import Enum
 
 class Sections(Enum):
     OBSERVATIONS = "Key Observations"
@@ -63,23 +68,21 @@ def generate_evaluation_text(candidate_response: str, exam_info: CommunicationsE
 
 def get_exam_info(exam_doc_path: str) -> CommunicationsExamInfo:
     """Get all the info from the exam document"""
-    exam_info = CommunicationsExamInfo()
-    #TODO
-    # charge docx
 
-    # extract abbreviations and candidate task
-    # add to exam_info fiels
+    # leer el examen de un path local
+    case_study_info = read_docx(case_study)
+    candidate_task, abbreviations, email, content = case_study_extract(case_study_info)
 
-    # call gpt to summarize the exam
-    # add to exam_info summary_text
+    #Not complete info without content
+    candidate_task = generate_candidate_task_gpt(candidate_task + abbreviations + email)
+    summary = generate_summary_gpt(content)
+    point_of_views = extract_point_of_views_gpt(abbreviations + content)
+    target_audience = extract_target_audience_gpt(candidate_task + abbreviations + email)
 
-    # call gpt to get the points of view
-    # add to exam_info points_of_view
-
-    # call gpt to get the target audience
-    # add to exam_info target_audience
-
-    # call gpt to get the candidate task
-    # add to exam_info candidate_task
-
-    return exam_info
+    return CommunicationsExamInfo(
+        summary_text=summary,
+        abbreviations=abbreviations,
+        points_of_view=point_of_views,
+        target_audience=target_audience,
+        candidate_task=candidate_task,
+    )

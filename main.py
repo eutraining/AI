@@ -1,4 +1,4 @@
-from .generate_text import generate_full_text
+from generate_text import generate_full_text
 
 def evaluate(candidate_response: str, exam_doc_path: str):
     """Generates the evaluation text and the summary text"""
@@ -12,3 +12,5 @@ def evaluate(candidate_response: str, exam_doc_path: str):
     doc = create_docx(score, summary_text, processed_evaluation_text)
 
     return doc
+
+#case_study = "/home/sheyla/work/ax16-eutraining/test_cases/0_Case study - Drugs policy.docx"

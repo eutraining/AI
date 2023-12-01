@@ -25,6 +25,10 @@ class Settings:
     TIPS_GUIDELINE_PATH = "prompts/TIPS_GUIDELINE.txt"
     TASK_PATH = "prompts/TASK.txt"
     WORKFLOW_PATH = "prompts/WORKFLOW.txt"
+    SUMMARY_PATH = "prompts/SUMMARY.txt"
+    TARGET_AUDIENCE_PATH = "prompts/TARGET_AUDIENCE.txt"
+    VIEWS_PATH = "prompts/VIEWS.txt"
+    CANDIDATE_TASK_PATH = "prompts/CANDIDATE_TASK.txt"
 
     # DB Variables
     DB_PATH = "sqlite:///eutraining.db"
