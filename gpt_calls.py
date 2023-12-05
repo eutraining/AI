@@ -1,8 +1,10 @@
 from apis.openai_api import call_gpt_api
 from models.models import CommunicationsExamInfo
 from utils import fetch_prompt_message
+from config import settings
 
 import openai
+
 
 def generate_section_gpt(
     section: str,
@@ -15,7 +17,7 @@ def generate_section_gpt(
 
     SYSTEM_MESSAGES: str = fetch_prompt_message(settings.SYSTEM_MESSAGES_PATH)
 
-    PROMPT_TEMPLATES: str = fetch_prompt_message(settings.PROMPT_TEMPLATES_PATH)
+    PROMPT_TEMPLATES: str = fetch_prompt_message(settings.GENERAL_TEMPLATE_PATH)
 
     GENERAL_MESSAGES: str = fetch_prompt_message(settings.GENERAL_MESSAGE_PATH)
 
@@ -23,7 +25,7 @@ def generate_section_gpt(
 
     #EXAM_INFO: str = fetch_prompt_message(settings.EXAM_INFO_PATH)
 
-    TASKS: str = fetch_prompt_message(settings.TASKS_PATH)
+    TASKS: str = fetch_prompt_message(settings.TASK_PATH)
 
     WORKFLOW: str = fetch_prompt_message(settings.WORKFLOW_PATH)
 
@@ -32,10 +34,10 @@ def generate_section_gpt(
     prompt = PROMPT_TEMPLATES
 
     # region Add the exam info to prompt
-    exam_info_filled = exam_info.replace("{exam_summary}", exam_info.summary_text)
-    exam_info_filled = exam_info.replace("{point_of_views}", exam_info.points_of_view)
-    exam_info_filled = exam_info.replace("{target_audience}", exam_info.target_audience)
-    exam_info_filled = exam_info.replace("{candidate_task}", exam_info.candidate_task)
+    exam_info_filled = EXAM_INFO.replace("{exam_summary}", exam_info.summary_text)
+    exam_info_filled = EXAM_INFO.replace("{point_of_views}", exam_info.points_of_view)
+    exam_info_filled = EXAM_INFO.replace("{target_audience}", exam_info.target_audience)
+    exam_info_filled = EXAM_INFO.replace("{candidate_task}", exam_info.candidate_task)
     # endregion
     
     prompt = prompt.replace("{general_message}", GENERAL_MESSAGES)
@@ -53,7 +55,7 @@ def generate_section_gpt(
     prompt = prompt.replace("{section}", section)
 
     section_text = call_gpt_api(SYSTEM_MESSAGES, prompt)
-
+    
     return section_text
 
 def generate_summary_gpt(evaluation_text: str) -> str:

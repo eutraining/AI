@@ -2,6 +2,8 @@ from gpt_calls import generate_section_gpt, generate_summary_gpt
 from models.models import CommunicationsExamInfo
 from utils import read_docx, case_study_extract, fetch_prompt_message
 from gpt_calls import generate_candidate_task_gpt, extract_point_of_views_gpt, extract_target_audience_gpt
+from config import settings
+
 
 from enum import Enum
 
@@ -23,7 +25,7 @@ def generate_full_text(candidate_response: str, exam_doc_path: str) -> str:
     # generate summary text
     summary_text = generate_summary_gpt(evaluation_text)
 
-    return processed_evaluation_text, summary_text
+    return evaluation_text, summary_text
 
 
 def generate_evaluation_text(candidate_response: str, exam_info: CommunicationsExamInfo):
@@ -62,15 +64,15 @@ def generate_evaluation_text(candidate_response: str, exam_info: CommunicationsE
     #observations = "Observations\n" + observations
     #grammar = "Grammar\n" + grammar
     #tips = "Tips\n" + tips
-
+    
     return text_until_now
 
 
-def get_exam_info(exam_doc_path: str) -> CommunicationsExamInfo:
+def get_exam_info(case_study_path: str) -> CommunicationsExamInfo:
     """Get all the info from the exam document"""
 
     # leer el examen de un path local
-    case_study_info = read_docx(case_study)
+    case_study_info = read_docx(case_study_path)
     candidate_task, abbreviations, email, content = case_study_extract(case_study_info)
 
     #Not complete info without content

@@ -1,16 +1,29 @@
 from generate_text import generate_full_text
+from process_docx import create_docx
+import docx
 
-def evaluate(candidate_response: str, exam_doc_path: str):
-    """Generates the evaluation text and the summary text"""
+def evaluate(candidate_response_path: str, exam_doc_path: str):
+    
+    # Load the cadidate_response
+    doc = docx.Document(cadidate_response)
+
+    candidate_response = ""
+
+    # Iterate through all the paragraphs in the document
+    for paragraph in doc.paragraphs:
+        candidate_response += paragraph.text + "\n"  
+
+    print(candidate_response)
 
     # generate evaluation text
-    processed_evaluation_text, summary_text, score = generate_full_text(candidate_response, exam_doc_path)
+    processed_evaluation_text, summary_text = generate_full_text(candidate_response, exam_doc_path)
 
-    # generate score (not needed yet)
-    # score = generate_score(processed_evaluation_text)  
-
-    doc = create_docx(score, summary_text, processed_evaluation_text)
+    # Crear un nuevo documento DOCX
+    doc = create_docx(0, summary_text, processed_evaluation_text)
 
     return doc
 
-#case_study = "/home/sheyla/work/ax16-eutraining/test_cases/0_Case study - Drugs policy.docx"
+case_study = "/home/sheyla/work/ax16-eutraining/test_cases/0_Case study - Drugs policy.docx"
+cadidate_response = "/home/sheyla/work/ax16-eutraining/test_cases/drugs_response.docx"
+evaluate(cadidate_response, case_study)
+

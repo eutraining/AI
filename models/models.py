@@ -1,7 +1,7 @@
-from models.base import Base
+from pydantic import BaseModel
 
 # class that represent relevant info of an exam case
-class CommunicationsExamInfo(Base):
+class CommunicationsExamInfo(BaseModel):
     summary_text: str
     abbreviations: str
     points_of_view: str
