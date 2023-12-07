@@ -13,8 +13,6 @@ def evaluate(candidate_response_path: str, exam_doc_path: str):
     for paragraph in doc.paragraphs:
         candidate_response += paragraph.text + "\n"  
 
-    print(candidate_response)
-
     # generate evaluation text
     processed_evaluation_text, summary_text = generate_full_text(candidate_response, exam_doc_path)
 
@@ -23,7 +21,7 @@ def evaluate(candidate_response_path: str, exam_doc_path: str):
 
     return doc
 
-case_study = "/home/sheyla/work/ax16-eutraining/test_cases/0_Case study - Drugs policy.docx"
-cadidate_response = "/home/sheyla/work/ax16-eutraining/test_cases/drugs_response.docx"
+case_study = "/home/sheyla/work/ax16-eutraining/test_cases/0_Case Study Driverless Cars.docx"
+cadidate_response = "/home/sheyla/work/ax16-eutraining/test_cases/driverless_cars_2.docx"
 evaluate(cadidate_response, case_study)
 

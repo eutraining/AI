@@ -10,7 +10,7 @@ class Settings:
     TIMEOUT = 90
     REQUEST_TIMEOUT = 180
     OPENAI_API_KEY = " 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"
-    GPT_MODEL = "gpt4"
+    GPT_MODEL = "gpt_4_1106" # "gpt_4_1106"
     # Fine-Tuning Variables
     N_EPOCHS = 15
 

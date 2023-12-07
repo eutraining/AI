@@ -16,7 +16,7 @@ def create_docx(score: int, summary_text: str, evaluation_text: str):
     file_name = get_next_available_filename('evaluation_report.docx')
 
     # Save the document to a file
-    doc.save(file_name)
+    doc.save("evaluations/" + file_name)
 
 def get_next_available_filename(base_filename):
     base, extension = os.path.splitext(base_filename)

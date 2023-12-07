@@ -1,4 +1,5 @@
 import openai
+import time
 from config import settings
 
 
@@ -85,10 +86,10 @@ def call_gpt_4_1106_preview(system_message: str, prompt: str) -> str:
     """Calls OpenAI GPT-4 API with the specified system message and prompt"""
     result = ""
     tries = 0
-    while not result and tries < API_TRIES:
+    while not result and tries < settings.API_TRIES:
         try:
             openai.api_key = settings.OPENAI_API_KEY
-            response = openai.ChatCompletion.acreate(
+            response = openai.ChatCompletion.create(
                 model="gpt-4-1106-preview",
                 messages=[
                     {"role": "system", "content": system_message},
