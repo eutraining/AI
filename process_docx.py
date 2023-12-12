@@ -7,7 +7,7 @@ def create_docx(score: int, summary_text: str, evaluation_text: str):
     doc = docx.Document()
 
     # Add content to the document (e.g., score, summary, evaluation text)
-    doc.add_heading('Evaluation Report', 0)  # Add a heading
+    doc.add_heading('Evaluation report', 0)  # Add a heading
     doc.add_paragraph(f'Score: {score}')
     doc.add_paragraph('Summary:')
     doc.add_paragraph(summary_text + "\n\n")

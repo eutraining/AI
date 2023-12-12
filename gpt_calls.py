@@ -23,7 +23,7 @@ def generate_section_gpt(
 
     EVALUATION_STRUCTURE: str = fetch_prompt_message(settings.EVALUATION_STRUCTURE_PATH)
 
-    #EXAM_INFO: str = fetch_prompt_message(settings.EXAM_INFO_PATH)
+    USER_FEEDBACK: str = fetch_prompt_message(settings.USER_FEDDBACK_PATH)
 
     TASKS: str = fetch_prompt_message(settings.TASK_PATH)
 
@@ -35,21 +35,21 @@ def generate_section_gpt(
 
     # region Add the exam info to prompt
     exam_info_filled = EXAM_INFO.replace("{exam_summary}", exam_info.summary_text)
-    exam_info_filled = EXAM_INFO.replace("{point_of_views}", exam_info.points_of_view)
-    exam_info_filled = EXAM_INFO.replace("{target_audience}", exam_info.target_audience)
-    exam_info_filled = EXAM_INFO.replace("{candidate_task}", exam_info.candidate_task)
+    exam_info_filled = exam_info_filled.replace("{point_of_views}", exam_info.points_of_view)
+    exam_info_filled = exam_info_filled.replace("{target_audience}", exam_info.target_audience)
+    exam_info_filled = exam_info_filled.replace("{candidate_task}", exam_info.candidate_task)
     # endregion
     
     prompt = prompt.replace("{general_message}", GENERAL_MESSAGES)
     prompt = prompt.replace("{evaluation_structure}", EVALUATION_STRUCTURE)
     prompt = prompt.replace("{workflow}", WORKFLOW)
     prompt = prompt.replace("{task}", TASKS)
+    prompt = prompt.replace("{user_feedback}", USER_FEEDBACK)
     prompt = prompt.replace("{exam_info}", exam_info_filled)
     prompt = prompt.replace("{abbreviations}", exam_info.abbreviations)
     prompt = prompt.replace("{candidate_response}", candidate_response)
     prompt = prompt.replace("{evaluation_until_now}", text_until_now)
     prompt = prompt.replace("{guideline}", guideline)
-    #prompt = prompt.replace("{user_feedback}", USER_FEEDBACK)
 
     # Set the actual section name
     prompt = prompt.replace("{section}", section)
@@ -66,7 +66,7 @@ def generate_summary_gpt(evaluation_text: str) -> str:
     prompt = SUMMARY
     prompt = prompt.replace("{evaluation_text}", evaluation_text)
 
-    summary_text = call_gpt_api("You are a great summarizer. You can summarize long text keeping the main idea and don't miss any essential information", prompt)
+    summary_text = call_gpt_api("You possess excellent summarization skills, adept at condensing lengthy texts while preserving the core ideas and crucial details", prompt)
 
     return summary_text
 
@@ -89,7 +89,7 @@ def extract_point_of_views_gpt(evaluation_text: str) -> str:
     prompt = VIEWS
     prompt = prompt.replace("{evaluation_text}", evaluation_text)
 
-    views = call_gpt_api("You are a model, capable of distinge different point of views about the same topic", prompt)
+    views = call_gpt_api("You are a sophisticated model with the ability to discern and analyze various perspectives on the same topic", prompt)
 
     return views
 
@@ -99,6 +99,6 @@ def extract_target_audience_gpt(evaluation_text: str) -> str:
     prompt = TARGET_AUDIENCE
     prompt = prompt.replace("{evaluation_text}", evaluation_text)
 
-    audience = call_gpt_api("You are a very intelligent model", prompt)
+    audience = call_gpt_api("As a highly capable model, you possess the ability to discern the target audience of a given text", prompt)
 
     return audience

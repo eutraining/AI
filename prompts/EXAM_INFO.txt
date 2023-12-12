@@ -1,4 +1,4 @@
-Exam summary: {exam_summary}
+Case study summary: {exam_summary}
 Different points of view in the exam: {point_of_views}
 Target audience: {target_audience}
 Candidate task: {candidate_task}

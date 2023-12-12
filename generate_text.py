@@ -8,8 +8,8 @@ from config import settings
 from enum import Enum
 
 class Sections(Enum):
-    OBSERVATIONS = "Key Observations"
-    GRAMMAR = "Grammar Errors"
+    OBSERVATIONS = "Key observations"
+    GRAMMAR = "Grammar errors"
     TIPS = "Key tips to improve"
 
 

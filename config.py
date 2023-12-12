@@ -6,7 +6,7 @@ class Settings:
     API_TRIES = 3
     API_BACKOFF = 2
     # OpenAI Environment Variables
-    TEMPERATURE = 0.3
+    TEMPERATURE = 0
     TIMEOUT = 90
     REQUEST_TIMEOUT = 180
     OPENAI_API_KEY = " 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"
@@ -29,6 +29,7 @@ class Settings:
     TARGET_AUDIENCE_PATH = "prompts/TARGET_AUDIENCE.txt"
     VIEWS_PATH = "prompts/VIEWS.txt"
     CANDIDATE_TASK_PATH = "prompts/CANDIDATE_TASK.txt"
+    USER_FEDDBACK_PATH = "prompts/USER_FEEDBACK.txt"
 
     # DB Variables
     DB_PATH = "sqlite:///eutraining.db"

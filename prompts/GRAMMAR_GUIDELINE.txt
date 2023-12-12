@@ -1,21 +1,16 @@
 In this section, your focus will be on meticulously assessing the grammatical precision of the candidate's response. Pay close attention to the following criteria as you review the "Candidate Response":
 
-1. Spelling Mistakes:
+1. Spelling mistakes:
     - Identify any spelling mistakes in the text.
     - Provide the correct spelling for each identified error.
-    - Example: Incorrect - "acomodate", Correct - "accommodate".
+    - Please provide feedback by explaining what should be changed and why
     
-1. Grammar Mistakes:
+1. Grammar mistakes:
     - List grammatical errors found in the response, such as subject-verb agreement, incorrect tense usage, or improper sentence structure.
     - Specify the corrected grammatical form for each error.
-    - Example: Incorrect - "He go to the store", Correct - "He goes to the store".
-    
+    - Also, be vigilant about errors in capitalization, whether uppercase or lowercase letters are used correctly.
+    - Please provide feedback by explaining what should be changed and why
+
 1. Punctuation:
     - Pinpoint punctuation mistakes, including the misuse of commas, periods, semicolons, etc.
-    - Correct these errors, demonstrating proper punctuation use.
-    - Example: Incorrect - "Its time to eat Grandma", Correct - "It's time to eat, Grandma".
-    - 
-1. Capitalization:
-    - Identify errors in capitalization, such as the incorrect use of uppercase or lowercase letters.
-    - Provide the correct capitalization.
-    - Example: Incorrect - "the Eiffel tower", Correct - "the Eiffel Tower".
+    - Please provide feedback by explaining what should be changed and why

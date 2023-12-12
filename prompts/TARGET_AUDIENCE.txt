@@ -1,3 +1,3 @@
 Read carefully the next text:
 {evaluation_text}
-Now, Let's think step by step and in the end just answer this questions: What should be the target audience of the final document of the candidate?
+Now, let's think step by step and, in the end, simply respond to this question: What should be the target audience for the candidate's final response?
