@@ -1,4 +1,5 @@
 import openai
+import time
 from config import settings
 
 
@@ -6,13 +7,17 @@ def call_gpt35_turbo(system_message: str, prompt: str, model="gpt-3.5-turbo-16k"
     """Calls OpenAI GPT3.5 turbo API with the specified system message and prompt"""
     result = ""
     tries = 0
+    if model == "gpt-3.5-turbo-16k":
+        temperature = settings.TEMPERATURE
+    else:
+        temperature = 0.0
     while not result and tries < settings.API_TRIES:
         try:
             openai.api_key = settings.OPENAI_API_KEY
             response = openai.ChatCompletion.create(
                 # model="gpt-3.5-turbo",
                 model=model,
-                temperature=0.0,
+                temperature=temperature,
                 timeout=settings.TIMEOUT,
                 request_timeout=settings.REQUEST_TIMEOUT,
                 messages=[
@@ -38,7 +43,7 @@ def call_gpt3_davinci(system_message: str, prompt: str) -> str:
             response = openai.Completion.create(
                 model="text-davinci-003",
                 prompt=prompt,
-                temperature=0.0,
+                temperature=settings.TEMPERATURE,
                 timeout=settings.TIMEOUT,
                 request_timeout=settings.REQUEST_TIMEOUT,
                 max_tokens=1000,
@@ -62,7 +67,7 @@ def call_gpt4(system_message: str, prompt: str) -> str:
             openai.api_key = settings.OPENAI_API_KEY
             response = openai.ChatCompletion.create(
                 model="gpt-4",
-                temperature=0.0,
+                temperature=settings.TEMPERATURE,
                 timeout=settings.TIMEOUT,
                 request_timeout=settings.REQUEST_TIMEOUT,
                 messages=[
@@ -73,18 +78,63 @@ def call_gpt4(system_message: str, prompt: str) -> str:
             result = response["choices"][0]["message"]["content"]
         except Exception as e:
             print(str(e))
+            time.sleep(60)
             tries += 1
     return result
 
+def call_gpt_4_1106_preview(system_message: str, prompt: str) -> str:
+    """Calls OpenAI GPT-4 API with the specified system message and prompt"""
+    result = ""
+    tries = 0
+    while not result and tries < settings.API_TRIES:
+        try:
+            openai.api_key = settings.OPENAI_API_KEY
+            response = openai.ChatCompletion.create(
+                model="gpt-4-1106-preview",
+                messages=[
+                    {"role": "system", "content": system_message},
+                    {"role": "user", "content": prompt},
+                ],
+                temperature=settings.TEMPERATURE
+            )
+            result = response["choices"][0]["message"]["content"]
+            tokens = response["usage"]["total_tokens"]
+        except Exception as e:
+            print(str(e))
+            time.sleep(60)
+            tries += 1
+    return result
 
-def call_gpt_api(system_message: str, prompt: str, model="gpt-3.5-turbo-16k") -> str:
+def call_gpt_api(system_message: str, prompt: str) -> str:
     """Selects and calls the correct GPT model to use from settings"""
     if settings.GPT_MODEL == "gpt3.5":
         # GPT3.5
-        return call_gpt35_turbo(system_message, prompt, model)
+        result =  call_gpt35_turbo(system_message, prompt)
     elif settings.GPT_MODEL == "davinci":
         # GPT3 Davinci
-        return call_gpt3_davinci(system_message, prompt)
-    else:
+        result =  call_gpt3_davinci(system_message, prompt)
         # GPT-4
-        return call_gpt4(system_message, prompt)
+    elif settings.GPT_MODEL == "gpt4":
+        result =  call_gpt4(system_message, prompt)
+    else:
+        result =  call_gpt_4_1106_preview(system_message, prompt)
+
+    return result
+
+def call_babbage_score(model: str, prompt: str):
+    result = ""
+    tries = 0
+    while not result and tries < settings.API_TRIES:
+        try:
+            openai.api_key = settings.OPENAI_API_KEY
+            response = openai.Completion.create(
+                model=model,
+                prompt=prompt,
+                temperature=settings.TEMPERATURE,
+            )
+            # Get the generated text
+            result = response["choices"][0]["text"]
+        except Exception as e:
+            print(str(e))
+            tries += 1
+    return result

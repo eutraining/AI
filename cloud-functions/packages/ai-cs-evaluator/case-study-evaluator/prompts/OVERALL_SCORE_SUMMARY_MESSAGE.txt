@@ -1,4 +1,0 @@
-In the output provide the OVERALL_SCORE and OVERALL_SUMMARY in the format:
-    - SCORE (X/10)
-    - SUMMARY
-DO NOT PROVIDE ANY OTHER INFORMATION EXCEPT THIS!

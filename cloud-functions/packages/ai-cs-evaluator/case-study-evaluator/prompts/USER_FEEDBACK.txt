@@ -1,0 +1,5 @@
+This segment is dedicated to the review and addressing of user feedback, comments, or suggestions from individuals who have interacted with the system. Please take this into consideration.
+
+- Remember, the student is doing a 45 test, it can't do anything out of the test time.
+- Evaluate whether it is more effective to either introduce new examples or remove redundant ones in order to eliminate repetitive content in the feedback
+- You can advise the candidate to avoid unnecessary abbreviations, like 'feedback', unless they contribute significantly to clarity or are deemed necessary.
