@@ -1,1 +1,1 @@
-{evaluation_text} TLDR. Summarize in more that one paragraph.
+{evaluation_text} TLDR. Summarize in two or three paragraph.

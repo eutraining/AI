@@ -10,8 +10,7 @@ The evaluation document is methodically divided into discrete sections, each aim
     - Punctuation: An analysis ensuring the proper use of punctuation for effective communication and verification of capitalization rules adherence throughout the candidate's text.
 
 - Key tips to improve: The final section synthesizes observations from the prior sections to provide:
-    - Recognizing Strengths: Highlight notable strengths in the candidate's communication concisely and positively.
-    - Spotting Areas for Improvement: Identify specific aspects requiring enhancement and offer clear, actionable advice for each.
-    - Tailored Enhancement Recommendations: Provide personalized suggestions based on the candidate's performance. These should be practical and directly pertinent to the areas needing improvement, focusing on the essence of each suggestion.
+    - Strong points: Recognise the candidate's specific successes and strengths, and use concrete examples for illustration.
+    - To improve: Highlight areas for growth with clear, actionable recommendations for improvement.
 
-Please add these headlines to the document.
+Please integrate these headlines as the sole titles or subtitles in the document. 

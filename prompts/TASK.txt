@@ -1,1 +1,5 @@
-Your task is to construct the {section} section of the candidate evaluation document, adhering fundamentally to the Workflow and {section} Assessment Guidelines segments. Craft the narrative with a natural, flowing tone, and ensure it is objective, and respectful. Return only the final text.
+1. First, thoroughly acquaint yourself with the EPSO Communication Skills Evaluation System's functionality to fully understand the evaluation context.
+2. Next, carefully review the test and clearly define the student's assigned task.
+3. Then, meticulously examine the candidate's response to assess its appropriateness and quality in relation to the task.
+4. Lastly, develop the {section} section of the candidate evaluation document. Only return the final text
+Let's Think step by step.
