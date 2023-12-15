@@ -10,6 +10,18 @@ def fetch_prompt_message(filepath: str) -> str:
         data = f.read()
     return data
 
+def load_doc(filepath: str) -> str:
+    # Load the cadidate_response
+    doc = docx.Document(filepath)
+
+    text = ""
+
+    # Iterate through all the paragraphs in the document
+    for paragraph in doc.paragraphs:
+        text += paragraph.text + "\n"  
+    
+    return text
+
 def read_docx(docx_path: str) -> str:
     # Load the Document
     doc = docx.Document(docx_path)

@@ -13,6 +13,9 @@
 **Relevant Exam Information**
 {exam_info}
 
+**Example of a high-quality response**
+{example}
+
 **Candidate Response**
 {candidate_response}
 

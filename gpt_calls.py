@@ -11,7 +11,8 @@ def generate_section_gpt(
     candidate_response: str,
     exam_info: CommunicationsExamInfo,
     text_until_now: str,
-    guideline: str
+    guideline: str,
+    perfect_response: str
 ) -> str:
     """Generates a specific evaluation section"""
 
@@ -48,11 +49,14 @@ def generate_section_gpt(
     prompt = prompt.replace("{exam_info}", exam_info_filled)
     prompt = prompt.replace("{abbreviations}", exam_info.abbreviations)
     prompt = prompt.replace("{candidate_response}", candidate_response)
+    prompt = prompt.replace("{example}", perfect_response)
     prompt = prompt.replace("{evaluation_until_now}", text_until_now)
     prompt = prompt.replace("{guideline}", guideline)
 
     # Set the actual section name
     prompt = prompt.replace("{section}", section)
+
+    print(prompt)
 
     section_text = call_gpt_api(SYSTEM_MESSAGES, prompt)
     
