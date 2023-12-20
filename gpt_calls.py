@@ -12,7 +12,7 @@ def generate_section_gpt(
     exam_info: CommunicationsExamInfo,
     text_until_now: str,
     guideline: str,
-    perfect_response: str
+    perfect_response: str = ""
 ) -> str:
     """Generates a specific evaluation section"""
 

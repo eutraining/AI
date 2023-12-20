@@ -13,7 +13,7 @@ class Sections(Enum):
     TIPS = "Key tips to improve"
 
 
-def generate_full_text(candidate_response: str, exam_doc_path: str, perfect_response: str) -> str:
+def generate_full_text(candidate_response: str, exam_doc_path: str, perfect_response: str = "") -> str:
     """Generates the evaluation text and the summary text"""
 
     # get abbrev and candidate task -> get_exam_info(exam_doc_path)
@@ -31,7 +31,7 @@ def generate_full_text(candidate_response: str, exam_doc_path: str, perfect_resp
     return evaluation_text, summary_text
 
 
-def generate_evaluation_text(candidate_response: str, exam_info: CommunicationsExamInfo, perfect_response: str):
+def generate_evaluation_text(candidate_response: str, exam_info: CommunicationsExamInfo, perfect_response: str = ""):
     """Generates all sections of the evaluation text"""
 
     text_until_now = ""
