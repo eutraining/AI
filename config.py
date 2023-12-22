@@ -30,6 +30,8 @@ class Settings:
     VIEWS_PATH = "prompts/VIEWS.txt"
     CANDIDATE_TASK_PATH = "prompts/CANDIDATE_TASK.txt"
     USER_FEDDBACK_PATH = "prompts/USER_FEEDBACK.txt"
+    AMBIENT_CONTEXT_PATH = "prompts/AMBIENT_CONTEXT.txt"
+    ROLE_PATH = "prompts/ROLE.txt"
 
     # DB Variables
     DB_PATH = "sqlite:///eutraining.db"

@@ -32,6 +32,10 @@ def generate_section_gpt(
 
     EXAM_INFO: str = fetch_prompt_message(settings.EXAM_INFO_PATH)
 
+    AMBIENT_CONTEXT: str = fetch_prompt_message(settings.AMBIENT_CONTEXT_PATH)
+
+    ROLE: str = fetch_prompt_message(settings.ROLE_PATH)
+
     prompt = PROMPT_TEMPLATES
 
     # region Add the exam info to prompt
@@ -46,6 +50,8 @@ def generate_section_gpt(
     prompt = prompt.replace("{workflow}", WORKFLOW)
     prompt = prompt.replace("{task}", TASKS)
     prompt = prompt.replace("{user_feedback}", USER_FEEDBACK)
+    prompt = prompt.replace("{ambient_context}", AMBIENT_CONTEXT)
+    prompt = prompt.replace("{role}", ROLE)
     prompt = prompt.replace("{exam_info}", exam_info_filled)
     prompt = prompt.replace("{abbreviations}", exam_info.abbreviations)
     prompt = prompt.replace("{candidate_response}", candidate_response)

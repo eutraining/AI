@@ -1,35 +1,41 @@
-**General Message**
+[General System Message]
 {general_message}
 
-**Evaluation Structure**
+[Evaluation Structure Overview]
 {evaluation_structure}
 
-**Abbreviations**
+[List of Abbreviations and Terms]
 {abbreviations}
 
-**Workflow**
+[Workflow and Process Guidelines]
 {workflow}
 
-**Relevant Exam Information**
+[Ambient Conditions and Context for Exam]
+{ambient_context}
+
+[Your Role and Responsibilities as an Evaluator]
+{role}
+
+[Relevant Exam Information]
 {exam_info}
 
-**Example of a high-quality response**
+[Example of a High-Quality Candidate Response]
 {example}
 
-**Candidate Response**
+[Candidate's Response for Evaluation]
 {candidate_response}
 
-**Evaluation Until Now**
+[Summary of Evaluation Completed So Far]
 {evaluation_until_now}
 
-**We are going to evaluate**
-{section}
+[Next Section for Evaluation]
+We are now going to evaluate: {section}
 
-**{section} Assessment Guidelines**
+[Assessment Guidelines for {section}]
 {guideline}
 
-**EPSO Communication Skills Evaluation System User feedback**
+[Feedback from EPSO Communication Skills Evaluation System Users]
 {user_feedback}
 
-**Task**
+[Task for Current Evaluation Session]
 {task}
