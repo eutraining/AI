@@ -1,0 +1,15 @@
+In this section, your focus will be on meticulously assessing the grammatical precision of the candidate's response. Pay close attention to the following criteria as you review the "Candidate Response":
+
+- Spelling mistakes:
+    - Identify any spelling mistakes in the text.
+    - Provide the correct spelling for each identified error.
+    - Please provide feedback by explaining what should be changed and why
+    
+- Grammar mistakes:
+    - List grammatical errors found in the response, such as subject-verb agreement, incorrect tense usage, or improper sentence structure.
+    - Specify the corrected grammatical form for each error.
+    - Please provide feedback by explaining what should be changed and why
+
+- Punctuation:
+    - Pinpoint punctuation mistakes, including the misuse of commas, periods, semicolons, etc.
+    - Please provide feedback by explaining what should be changed and why

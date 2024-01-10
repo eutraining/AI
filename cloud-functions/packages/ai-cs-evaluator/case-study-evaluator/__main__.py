@@ -1,20 +1,22 @@
-from evaluation import generate_evaluation
 from schema import EvaluationRequestSchema
-
+from evaluate import evaluate  # Import the evaluate function
 
 def main(args: dict) -> dict:
     """ Case Study Info """
     case_study_data = EvaluationRequestSchema(**args)
-    """Evaluation Data Info"""
-    response_data = generate_evaluation(case_study_data)
-    return {'body': {
-          "overall_score": response_data.overall_score,
-          "overall_summary": response_data.overall_summary,
-          "competencies": {
-              "communication": {
-                  "score": response_data.competencies.get("communication").score,
-                  "observations": response_data.competencies.get("communication").observations,
-                  "tips": response_data.competencies.get("communication").tips
-              }
-          }
-        }}
+
+    # Extract the necessary data for evaluation
+    candidate_response_data = case_study_data.candidate_response  
+    exam_doc_data = case_study_data.exam_doc
+
+    # Perform the evaluation
+    evaluation = evaluate(candidate_response_data, exam_doc_data)
+
+    return {
+        'body': {
+            "summary": evaluation.summary,
+            "score": evaluation.score,
+            "observations": evaluation.observations,
+            "tips": evaluation.tips           
+        }
+    }

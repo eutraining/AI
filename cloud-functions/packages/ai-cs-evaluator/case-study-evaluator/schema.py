@@ -1,31 +1,21 @@
 from pydantic import BaseModel
 
-
-class AttachmentSchema(BaseModel):
-    title: str
-    body: str
-
-
-class CaseStudySchema(BaseModel):
-    question: str
-    introduction: str
-    assignment: str
-    sample_solution: str
-    attachments: list[AttachmentSchema]
+# class that represent relevant info of an exam case
+class CommunicationsExamInfo(BaseModel):
+    summary_text: str
+    abbreviations: str
+    points_of_view: str
+    target_audience: str
+    candidate_task: str
 
 
 class EvaluationRequestSchema(BaseModel):
-    case_study: CaseStudySchema
+    case_study: str
     trainee_answer: str
 
 
-class Competency(BaseModel):
-    score: str
+class EvaluationResponseSchema(BaseModel):
+    summary: str
+    score: int
     observations: str
     tips: str
-
-
-class EvaluationResponseSchema(BaseModel):
-    overall_score: str
-    overall_summary: str
-    competencies: dict[str, Competency]

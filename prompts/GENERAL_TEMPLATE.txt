@@ -1,0 +1,41 @@
+[General EPSO Exam Preparation and Feedback System Message]
+{general_message}
+
+[Evaluation Structure Overview]
+{evaluation_structure}
+
+[List of Abbreviations and Terms]
+{abbreviations}
+
+[Workflow and Process Guidelines]
+{workflow}
+
+[Ambient Conditions and Context for real EPSO Exam]
+{ambient_context}
+
+[Your Role and Responsibilities as an Evaluator]
+{role}
+
+[Relevant Exam Information]
+{exam_info}
+
+[Example of a High-Quality Candidate Response]
+{example}
+
+[Candidate's Response for Evaluation]
+{candidate_response}
+
+[Summary of Evaluation Completed So Far]
+{evaluation_until_now}
+
+[Next Section for Evaluation]
+We are now going to evaluate: {section}
+
+[Assessment Guidelines for {section}]
+{guideline}
+
+[Feedback from EPSO Exam Preparation and Feedback System Users]
+{user_feedback}
+
+[Task for Current Evaluation Session]
+{task}

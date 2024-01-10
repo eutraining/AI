@@ -1,0 +1,73 @@
+To effectively evaluate a candidate's communication skills, it's important to consider these four key aspects:
+
+1.1. Conveys Information and Opinions Clearly and Concisely
+Jargon Usage
+Analysis: Examine the frequency and context of jargon use. Use natural language processing (NLP) to identify technical terms and jargon.
+Questions: Is the jargon necessary for the context? Is it explained or likely to be understood by the intended audience?
+Complex Language and Vocabulary
+Analysis: Assess readability scores and analyze sentence structure complexity.
+Questions: Are the word choices overly complex? Could simpler language convey the same message?
+Sentence Complexity
+Analysis: Use NLP to evaluate sentence length and structure.
+Questions: Are the sentences unnecessarily long or convoluted? Do they contain multiple nested clauses or ideas?
+Abbreviation Usage
+Analysis: Identify and count abbreviations, especially unexplained ones.
+Questions: Are abbreviations commonly understood or explained? Is their use justified?
+Clarity and Fluency
+Analysis: Evaluate overall readability and flow of the text.
+Questions: Is the text easy to follow? Does it convey the message without confusion?
+Spelling and Grammar Accuracy
+Analysis: Employ spell-checking and grammar analysis tools.
+Questions: Are spelling and grammar errors frequent? Do they affect the understanding of the text?
+Structure and Flow
+Analysis: Review the organization of the text, including the use of paragraphs and connectors.
+Questions: Is there a clear introduction, body, and conclusion? Are ideas logically connected?
+Formatting
+Analysis: Assess the use of formatting elements like subheadings and bullet points.
+Questions: Does the formatting enhance understanding? Is it overused or underused?
+Paragraph Length
+Analysis: Measure paragraph length and assess its appropriateness.
+Questions: Are paragraphs too lengthy or too brief, hindering readability?
+Detail Balance
+Analysis: Evaluate the level of detail in relation to the overall message.
+Questions: Is the information too superficial or excessively detailed? Is the detail level appropriate for the audience and purpose?
+Adherence to Task Requirements
+Analysis: Review the extent to which all parts of the task are addressed.
+Questions: Does the text cover all required elements of the task? Are any key aspects missing?
+Structural Organization
+Analysis: Examine the overall organization of the text.
+Questions: Is there a logical flow and structure? Are headings and bullet points used effectively?
+Completeness
+Analysis: Evaluate whether the text is complete
+Questions: Does the text provide a complete response to the task? It is the response complete?
+
+
+1.2. Tailors the Message to Respond to the Needs of the Audience
+Tone Appropriateness
+Analysis: Assess formality and appropriateness of tone for the intended audience.
+Questions: Is the tone suitably formal or informal for the audience? Does it reflect the conventions of EU official writing?
+Language and Complexity Adaptation
+Analysis: Examine language use and complexity in relation to audience understanding.
+Questions: Is the language and complexity level appropriate for the audience's knowledge and expectations?
+Audience-Relevant Message
+Analysis: Evaluate the relevance of content and arguments to the audience's needs.
+Questions: Are the arguments and content tailored to the interests and requirements of the audience?
+
+1.3. Uses Convincing Arguments and Solid Reasoning
+Reasoning and Argumentation
+Analysis: Assess the logical structure and strength of arguments and reasoning.
+Questions: Are the arguments well-structured and supported by evidence? Are pros and cons balanced?
+Strength of Arguments
+Analysis: Evaluate the relevance and credibility of the arguments used.
+Questions: Are the chosen arguments relevant and reliable? Do they effectively support the conclusion?
+
+1.4. Takes into Account the Point of View of Others
+Understanding and Integration of Others' Views
+Analysis: Identify references to and integration of other viewpoints.
+Questions: Are different perspectives acknowledged and considered? Is there evidence of understanding these viewpoints?
+Adaptability and Responsiveness
+Analysis: Assess willingness to adapt based on others' inputs.
+Questions: Is there a willingness to compromise or adjust conclusions based on others' feedback?
+Credit for Others' Ideas
+Analysis: Check for acknowledgments of others' contributions.
+Questions: Are ideas sourced from others appropriately credited? Is there a balance between original and sourced ideas?

@@ -1,0 +1,32 @@
+[General Message]
+{general_message}
+
+[Evaluation Structure]
+{evaluation_structure}
+
+[Abbreviations]
+{abbreviations}
+
+[Workflow]
+{workflow}
+
+[Relevant Exam Information]
+{exam_info}
+
+[Candidate Response]
+{candidate_response}
+
+[Evaluation Until Now]
+{evaluation_until_now}
+
+[We are going to evaluate] 
+{section}
+
+[{section} Assessment Guidelines]
+{guideline}
+
+[EPSO Exam Preparation and Feedback System User feedback]
+{user_feedback}
+
+[Task]
+{task}

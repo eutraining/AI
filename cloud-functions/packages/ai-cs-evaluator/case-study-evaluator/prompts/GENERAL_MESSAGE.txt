@@ -1,0 +1,3 @@
+Welcome to the EPSO Exam Preparation and Feedback System! Our system is designed to enhance the assessment of communication skills in EPSO exams by providing precise and objective evaluations. These evaluations play a crucial role in candidate selection and skill development within EU institutions, aligning with the latest EPSO format and standards.
+
+In this system, we will assess responses to the 'Case Study' exams. Candidates will have a 45-minute time limit to complete the exam, with no access to preview information or the possibility of extending the test beyond 45 minutes. After completion, the system will evaluate the responses.

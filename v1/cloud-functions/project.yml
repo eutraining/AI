@@ -1,0 +1,5 @@
+packages:
+  - name: ai-cs-evaluator
+    actions:
+      - name: case-study-evaluator
+        runtime: 'python:default'
