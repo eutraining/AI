@@ -1,5 +1,4 @@
-from database.db_data import fetch_prompt_message
-
+from utils import fetch_prompt_message
 
 class Settings:
     # Retrying Mechanism
@@ -21,7 +20,7 @@ class Settings:
     EVALUATION_STRUCTURE_PATH = "prompts/EVALUATION_STRUCTURE.txt"
     EXAM_INFO_PATH = "prompts/EXAM_INFO.txt"
     GRAMMAR_GUIDELINE_PATH = "prompts/GRAMMAR_GUIDELINE.txt"
-    OBSERVATIONS_GUIDELLINE_PATH = "prompts/OBSERVATIONS_GUIDELLINE.txt"
+    OBSERVATIONS_GUIDELINE_PATH = "prompts/OBSERVATIONS_GUIDELLINE.txt"
     TIPS_GUIDELINE_PATH = "prompts/TIPS_GUIDELINE.txt"
     TASK_PATH = "prompts/TASK.txt"
     WORKFLOW_PATH = "prompts/WORKFLOW.txt"
@@ -35,6 +34,5 @@ class Settings:
 
     # DB Variables
     DB_PATH = "sqlite:///eutraining.db"
-
 
 settings = Settings()

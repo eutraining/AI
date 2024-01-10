@@ -1,4 +1,4 @@
-[General System Message]
+[General EPSO Exam Preparation and Feedback System Message]
 {general_message}
 
 [Evaluation Structure Overview]
@@ -10,7 +10,7 @@
 [Workflow and Process Guidelines]
 {workflow}
 
-[Ambient Conditions and Context for Exam]
+[Ambient Conditions and Context for real EPSO Exam]
 {ambient_context}
 
 [Your Role and Responsibilities as an Evaluator]
@@ -34,7 +34,7 @@ We are now going to evaluate: {section}
 [Assessment Guidelines for {section}]
 {guideline}
 
-[Feedback from EPSO Communication Skills Evaluation System Users]
+[Feedback from EPSO Exam Preparation and Feedback System Users]
 {user_feedback}
 
 [Task for Current Evaluation Session]

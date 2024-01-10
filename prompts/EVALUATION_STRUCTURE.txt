@@ -1,17 +1,16 @@
 The evaluation document is methodically divided into discrete sections, each aimed at providing a comprehensive analysis of the candidate's communicative competence across various dimensions:
-- Key observations: This primary section is subdivided into four subsections, each corresponding to a specific aspect of communication:
-    - Convay information and opinions clearly and concisely: A paragraph dedicated to evaluating the candidate's precision in articulating thoughts and information succinctly.
-    - Tailors the message to the audience: A paragraph assessing the candidate's capacity to modify communication based on audience needs and contextual demands.
-    - Uses convincing arguments and solid reasoning to put the message across: A A paragraph analyzing the structure and substance of the candidate's arguments, ensuring logical coherence and persuasive power.
-    - Takes into account the point of view of others: A paragraph examining how the candidate acknowledges and integrates alternate viewpoints into their communication.
-    - Structure, Completeness, and Adherence to Task Requirements
+1. Key observations: This primary section is subdivided into four subsections, each corresponding to a specific aspect of communication:
+    1.1. Convay information and opinions clearly and concisely: A paragraph dedicated to evaluating the candidate's precision in articulating thoughts and information succinctly. Structure, Completeness, and Adherence to Task Requirements
+    1.2. Tailors the message to the audience: A paragraph assessing the candidate's capacity to modify communication based on audience needs and contextual demands.
+    1.3. Uses convincing arguments and solid reasoning to put the message across: A A paragraph analyzing the structure and substance of the candidate's arguments, ensuring logical coherence and persuasive power.
+    1.4. Takes into account the point of view of others: A paragraph examining how the candidate acknowledges and integrates alternate viewpoints into their communication.
  
-- Grammar errors: A meticulous account of the candidate's linguistic accuracy is presented here, with a focus on:
-    - Spelling: A systematic review of the text to correct any spelling errors.
-    - Punctuation: An analysis ensuring the proper use of punctuation for effective communication and verification of capitalization rules adherence throughout the candidate's text.
+2. Grammar errors: A meticulous account of the candidate's linguistic accuracy is presented here, with a focus on:
+    2.1. Spelling: A systematic review of the text to correct any spelling errors.
+    2.2. Punctuation: An analysis ensuring the proper use of punctuation for effective communication and verification of capitalization rules adherence throughout the candidate's text.
 
-- Key tips to improve: The final section synthesizes observations from the prior sections to provide:
-    - Strong points: Recognise the candidate's specific successes and strengths, and use concrete examples for illustration.
-    - To improve: Highlight areas for growth with clear, actionable recommendations for improvement.
+3. Key tips to improve: The final section synthesizes observations from the prior sections to provide:
+    3.1. Strong points: Recognise the candidate's specific successes and strengths, and use concrete examples for illustration.
+    3.2. To improve: Highlight areas for growth with clear, actionable recommendations for improvement.
 
 Please integrate these headlines as the sole titles or subtitles in the document. 

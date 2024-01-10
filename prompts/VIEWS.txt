@@ -1,3 +1,3 @@
 Read carefully the next text:
 {evaluation_text}
-Now, let's consider step by step and, in the end, simply respond to this question: What points of view or opinions about the main topic are expressed in the text?
+Now, let's consider step by step and, in the end, simply respond to this question: What points of view, opinions and important ideas about the main topic are expressed in the text?

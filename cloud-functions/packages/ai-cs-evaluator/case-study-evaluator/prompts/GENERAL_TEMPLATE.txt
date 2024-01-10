@@ -25,7 +25,7 @@
 [{section} Assessment Guidelines]
 {guideline}
 
-[EPSO Communication Skills Evaluation System User feedback]
+[EPSO Exam Preparation and Feedback System User feedback]
 {user_feedback}
 
 [Task]
