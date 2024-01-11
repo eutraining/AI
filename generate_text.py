@@ -80,10 +80,25 @@ def add_candidate_abbreviations(candidate_response: str, exam_info: Communicatio
     exam_info (CommunicationsExamInfo): The exam info object to update with abbreviations.
     """
     pattern = r'\(([A-Z]{2,})\)\s*([\w\s]+)|([\w\s]+)\s*\(([A-Z]{2,})\)'
+
+    # Search for all matches
     matches = re.findall(pattern, candidate_response)
-    acronyms_and_explanations = {acronym: explanation.strip() for acronym, explanation in matches}
-    acronyms_str = '\n'.join([f'{acronym}: {explanation}' for acronym, explanation in acronyms_and_explanations.items()])
+
+    # Create a dictionary to store the acronyms and their explanations
+    acronyms_and_explanations = {}
+
+    for match in matches:
+        if match[0]:  # Acronyms followed by explanation
+            acronyms_and_explanations[match[0]] = match[1].strip()
+        else:  # Explanation followed by acronyms
+            acronyms_and_explanations[match[3]] = match[2].strip()
+
+    # Convert the dictionary of acronyms into a string
+    acronyms_str = '\n'.join([f'{acronym}: {explanation}\n' for acronym, explanation in acronyms_and_explanations.items()])
+
+    # Concatenate with exam_info.abbreviations
     exam_info.abbreviations += "\n" + acronyms_str
+
 
 def get_exam_info(case_study_path: str) -> CommunicationsExamInfo:
     """
