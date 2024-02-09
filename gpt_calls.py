@@ -1,4 +1,4 @@
-from apis.openai_api import call_gpt_api
+from apis.openai_api import call_gpt_api, call_gpt_4_1106_preview, call_gpt35_turbo
 from models.models import CommunicationsExamInfo
 from utils import fetch_prompt_message
 from config import settings
@@ -158,3 +158,32 @@ def extract_target_audience_gpt(evaluation_text: str) -> str:
     audience = call_gpt_api("As a highly capable model, you possess the ability to discern the target audience of a given text", prompt)
 
     return audience
+
+
+def generate_evaluation(writing: str, abbreviations: str, prompt_path: str, gpt_model: str) -> str:
+    template = fetch_prompt_message(prompt_path)
+    prompt_text = template.replace("{writing}", writing)
+    prompt_text = prompt_text.replace("{abbreviations}", abbreviations)
+    return prompt(prompt_text, gpt_model)
+
+
+def generate_initial_report(writing: str, task: str, evaluations: str, prompt_path: str, gpt_model: str) -> str:
+    template = fetch_prompt_message(prompt_path)
+    prompt_text = template.replace("{writing}", writing)
+    prompt_text = prompt_text.replace("{task}", task)
+    prompt_text = prompt_text.replace("{evaluations}", evaluations)
+    return prompt(prompt_text, gpt_model)
+
+def generate_final_report(writing: str, task: str, initial_assessment: str, prompt_path: str, gpt_model: str) -> str:
+    template = fetch_prompt_message(prompt_path)
+    prompt_text = template.replace("{writing}", writing)
+    prompt_text = prompt_text.replace("{task}", task)
+    prompt_text = prompt_text.replace("{initial_assessment}", initial_assessment)
+    return prompt(prompt_text, gpt_model)
+
+
+def prompt(prompt: str, model: str) -> str:
+    if model == 'gpt-3.5':
+        return call_gpt35_turbo('', prompt)
+    else:
+        return call_gpt_4_1106_preview('', prompt)
